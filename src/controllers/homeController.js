@@ -21,22 +21,51 @@ let getCrud = (req, res)=> {
 
 let postCrud = async(req, res)=> {
     let mess =  await CRUDservice.createNewUser(req.body);
-    console.log(mess)
     return res.send("post crud")
 }
 
 let  displayCrud = async(req, res)=> {
     let data =  await CRUDservice.getAllUser();
-    console.log(data)
     return res.render('displayCrud.ejs', {
         data: data
     })
 }
+let getEditCrud = async(req, res)=> {
+    let id = req.query.id;
+    if (id) {
+        let user =  await CRUDservice.getUserById(id);
+        return res.render('editCrud.ejs', {
+            user: user
+        })
+    } else {
+        return res.send('User not found')
+    }
+}
+let putCrud = async(req, res)=>{
+    let data = req.body;
+    await CRUDservice.updateUserDate(data)
+    let dataUpdate = await CRUDservice.getAllUser();
+    return res.render('displayCrud.ejs', {
+        data: dataUpdate
+    })
+}
 
+let deleteCrud = async(req, res)=>{
+    let id = req.query.id;
+    if (id) {
+        await CRUDservice.deleteUserById(id);
+        return res.send('Delete success')
+    } else {
+        return res.send('User not found')
+    }
+}
 module.exports = {
     getHomePage: getHomePage,
     getAboutPage : getAboutPage ,
     getCrud : getCrud,
     postCrud: postCrud,
-    displayCrud: displayCrud
+    displayCrud: displayCrud,
+    getEditCrud: getEditCrud,
+    putCrud: putCrud,
+    deleteCrud: deleteCrud
 }

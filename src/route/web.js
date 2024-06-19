@@ -1,4 +1,5 @@
 import homeController from "../controllers/homeController";
+import userController from "../controllers/userController";
 
 let initWebRoutes = ( app)=>{
     app.get("/", homeController.getHomePage)
@@ -7,6 +8,12 @@ let initWebRoutes = ( app)=>{
 
     app.post("/post-crud", homeController.postCrud)
     app.get("/get-crud", homeController.displayCrud)
+    app.get("/edit-crud", homeController.getEditCrud)
+
+    app.get("/delete-crud", homeController.deleteCrud)
+    app.post("/put-crud", homeController.putCrud)
+
+    app.post("/api/login", userController.handleLogin)
 }
 
 module.exports = initWebRoutes;
