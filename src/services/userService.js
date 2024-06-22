@@ -9,7 +9,6 @@ let handleUserLogin = (email, pass)=>{
             var user = await db.User.findOne({ 
                 where: { email: email },
                 attributes: ['email','roleId','password'],
-                raw: true
             });
 
             //Ktra email có tồn tại khong
@@ -37,8 +36,33 @@ let handleUserLogin = (email, pass)=>{
     });
 }
 
-
+let getAllUser = (userID)=>{
+    return new Promise( async(resolve, reject) =>{
+        try {
+            let users = ''
+            if(userID === 'ALL'){
+                users = await db.User.findAll({
+                    attributes:{
+                        exclude: ['password']
+                    },                 
+                });
+            }
+            if(userID && userID !== 'ALL'){
+                users = await db.User.findOne({ 
+                    where: { id: userID },
+                    attributes:{
+                        exclude: ['password']
+                    },
+                });
+            }
+            resolve(users);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
 
 module.exports = {
-    handleUserLogin
+    handleUserLogin,
+    getAllUser
 }

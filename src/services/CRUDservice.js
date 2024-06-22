@@ -41,7 +41,7 @@ let getAllUser = ()=>{
     return new Promise( async(resolve, reject) =>{
         try {
             var users = await db.User.findAll({
-                raw: true
+
             });
             resolve(users);
         } catch (error) {
@@ -55,7 +55,6 @@ let getUserById = (id)=>{
         try {
             var user = await db.User.findOne({ 
                 where: { id: id },
-                raw: true
             });
             if (user) {
                 resolve(user);

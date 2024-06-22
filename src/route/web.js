@@ -14,6 +14,7 @@ let initWebRoutes = ( app)=>{
     app.post("/put-crud", homeController.putCrud)
 
     app.post("/api/login", userController.handleLogin)
+    app.get("/api/get-all-user", userController.handleGetAllUser)
 }
 
 module.exports = initWebRoutes;

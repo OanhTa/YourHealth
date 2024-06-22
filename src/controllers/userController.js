@@ -19,7 +19,24 @@ let handleLogin = async(req, res)=>{
         user: userData.user ? userData.user : {}
     });
 }
+let handleGetAllUser = async(req, res)=>{
+   let id = req.query.id;
+   if(!id){
+    return res.status(200).json({
+        errCode:1,
+        Message:'Missing required parementers',
+        user:[]
+   })
+   }
+   let users = await userService.getAllUser(id)
 
+   return res.status(200).json({
+        errCode:0,
+        Message:'Ok',
+        users
+   })
+}
 module.exports = {
-    handleLogin
+    handleLogin,
+    handleGetAllUser
 }
