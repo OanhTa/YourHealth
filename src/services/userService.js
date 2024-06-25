@@ -1,15 +1,28 @@
+import { raw } from 'body-parser';
 import db from '../models';
+
 var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
+
+let checkUserEmail = (email)=>{
+    return new Promise( async(resolve, reject) =>{
+        try {
+            var user = await db.User.findOne({ 
+                where: { email: email },
+                attributes: ['email','roleId','password'],
+            });
+            resolve(user)
+        }catch (error) {
+            reject(error);
+        }
+    });
+}
 
 let handleUserLogin = (email, pass)=>{
     return new Promise( async(resolve, reject) =>{
         try {
             let userData = {}
-
-            var user = await db.User.findOne({ 
-                where: { email: email },
-                attributes: ['email','roleId','password'],
-            });
+            var user = checkUserEmail(data.email);
 
             //Ktra email có tồn tại khong
             if(user){
@@ -61,8 +74,114 @@ let getAllUser = (userID)=>{
         }
     });
 }
+let hashUserPassword = (pass)=>{
+    return new Promise( async(resolve, reject) =>{
+        try {
+            var hash = await bcrypt.hashSync(pass, salt);
+            resolve(hash);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+let createNewUser = (data)=>{
+    return new Promise( async(resolve, reject) =>{
+            try {
+                let isCheck = await checkUserEmail(data.email);
+                if(isCheck){
+                    resolve({
+                        errCode: 1,
+                        message: 'Your email is already used. Please try another email'
+                    });
+                }
+                let hashPass = await hashUserPassword(data.password)
+                await db.User.create({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    password:hashPass,
+                    address: data.address,
+                    gender: data.gender == '1' ? true : false,
+                    roleId:data.role,
+                    phonenumber:data.phonenumber,
+                    // positionId: data.position,
+                    // image: data.image
+            });
+            resolve({
+                errCode: 0,
+                message: 'Create Successful'
+            });
+            } catch (error) {
+                reject(error);
+            }
+        }
+    )
+}
+let deleteUser = (id)=>{
+    return new Promise( async(resolve, reject) =>{
+        try {
+            var user = await db.User.findOne({ 
+                where: { id: id },
+                raw: false
+            });
+            if (!user) {
+                resolve({
+                    errCode: 2,
+                    message: "The user isn't exist"
+                });
+            } 
+            await user.destroy();
+            resolve({
+                errCode: 0,
+                message: 'The user is delete'
+            });
+        }catch (error) {
+            reject(error);
+        }
+    });
+}
+let editUser = (data)=>{
+    return new Promise( async(resolve, reject) =>{
+        try {
+            if(!data.id){
+                resolve({
+                    errCode: 2,
+                    message: 'Missing required paramenters!'
+                }); 
+            }
+            let user = await db.User.findOne({ 
+                where: { id: data.id },
+                raw: false
+            });
+            
+            if(user){
+                user.firstName = data.firstName;
+                user.lastName = data.lastName;
+                user.address = data.address;
+                user.phonenumber = data.phonenumber;
+                await user.save();
 
+                resolve({
+                    errCode: 0,
+                    message: 'Update the user succeeds!'
+                }); 
+            }else{
+                resolve({
+                    errCode: 1,
+                    message: 'User not found!'
+                });
+            }
+        
+               
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
 module.exports = {
     handleUserLogin,
-    getAllUser
+    getAllUser,
+    createNewUser,
+    deleteUser,
+    editUser
 }

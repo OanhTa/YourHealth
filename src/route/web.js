@@ -15,6 +15,9 @@ let initWebRoutes = ( app)=>{
 
     app.post("/api/login", userController.handleLogin)
     app.get("/api/get-all-user", userController.handleGetAllUser)
+    app.post("/api/create-new-user", userController.handleCreateNewUser)
+    app.put("/api/edit-user", userController.handleEditUser)
+    app.delete("/api/delete-user", userController.handleDeleteUser)
 }
 
 module.exports = initWebRoutes;
