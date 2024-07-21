@@ -17,11 +17,9 @@ class Header extends Component {
 
     render() {
         const { processLogout, language, userInfo } = this.props;
-        // console.log("check userInfo: ",this.props.userInfo);
 
         return (
             <div className="header-container">
-                {/* thanh navigator */}
                 <div className="header-tabs-container">
                     <Navigator menus={adminMenu} />
                 </div>

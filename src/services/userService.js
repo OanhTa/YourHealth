@@ -1,13 +1,12 @@
 import axios from "../axios"
 
 const handleLoginAPI = (userEmail, userPassword) => {
-    //goi den server NodeJS 
-    //truyền key object, đặt tên khác >>> error
-    return axios.post("/api/login", {email: userEmail, password: userPassword});//phai co formdata
+    return axios.post("/api/login", {email: userEmail, password: userPassword});
 }
 
-const getAllUser = (inputId) => { //id === "ALL" or id_user
-    return axios.get(`/api/get-all-users?id=${inputId}`);
+const getAllUser = (inputId) => {
+    console.log("check data input createuser API: ", inputId);
+    return axios.get(`/api/get-all-user?id=${inputId}`);
 }
 
 const CreateNewUserServiceAPI = (data) => {

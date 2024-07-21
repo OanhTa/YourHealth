@@ -90,19 +90,17 @@ class UserManage extends Component {
                 this.setState({
                     isOpenModalNewUser: false,
                 })
-                emitter.emit('EVENT_CLEAR_MODAL_DATA') //.emit >>> fire event; .on >>> listen event
+                emitter.emit('EVENT_CLEAR_MODAL_DATA') 
             }
         } catch (e) {
             console.log(e);
         }
-        // console.log("check data from ModalUser: ", data);
+
     }
 
     handleDeleteUser = async(user) => {
-        //console.log("check input ob user handleDelete: ", user); //>>> return ob{}
         try {
             let respone = await DeleteUserServiceAPI(user.id);
-            //console.log("check respone delete user: ", respone);
             if (respone && respone.errCode !== 0) {
                 alert(respone.errMessage)
             } else {
@@ -116,24 +114,16 @@ class UserManage extends Component {
         }
     }
 
-    /**Life cycle
-     * run component:
-     * 1. run constructor >>> init state
-     * 2. DidMount (call api >>> set state) : born
-     * 3. render (re-render >>> update component)
-     * 
-     */
     render() {
-        // console.log("check render: ", this.state);
         let arrUser = this.state.arrUsers;
         return (
             <div className="users-container"> 
                 <ModalUser
                     isOpen = {this.state.isOpenModalNewUser}
-                    toggleFromUserManage = {this.toggleUserModal} //truyen qua 1 func
+                    toggleFromUserManage = {this.toggleUserModal}
                     createNewuser = {this.createNewuser}
                 />
-                { //cau lenh if >>> render component modaledituser
+                { 
                     this.state.isOpenModalEditUser &&
                     <ModalEditUser
                         isOpen = {this.state.isOpenModalEditUser}
@@ -164,10 +154,8 @@ class UserManage extends Component {
                         </thead>
                         
                         <tbody>
-                            { arrUser && arrUser.map((item, index) => {//.map lap theo phan tu cua arr
-                                // console.log("check map: ", item, index);
+                            { arrUser && arrUser.map((item, index) => {
                                 return(
-                                    //return >>> 1 khoi (Fragments <> ) 
                                     <tr>
                                         <td>{item.email}</td>
                                         <td>{item.firstName}</td>

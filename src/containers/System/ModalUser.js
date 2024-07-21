@@ -29,8 +29,7 @@ class ModalUser extends Component {
     }
 
     listenToEmitter() {
-        emitter.on('EVENT_CLEAR_MODAL_DATA', () => {//.emit >>> fire event; .on >>> listen event
-            //reset state Modal User
+        emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
             this.setState({
                 email: '',
                 password: '',
@@ -49,24 +48,8 @@ class ModalUser extends Component {
     }
 
     handleOnChangeInput = (event, id) => {
-        //OPTION 1 >>> NOT RECOMMENDED
-        /** b/c
-         * this.state = {
-         *  email: '',
-         *  password: '',
-         * }
-         * JS
-         * this.state.email === this.state['email']
-         */
-        // this.state[id] = event.target.value; //khong modify truc tiep
-        // this.setState({
-        //     ...this.state // ... >>> copy nguyen this.state = {}
-        // }, () => {console.log("check ...this.state:", this.state)});
 
-        // console.log(this.state[id]); //input value
-
-        //OPTION 2
-        let copyState = {...this.state}; //khong modify truc tiep thay the bang copyState
+        let copyState = {...this.state}; 
         copyState[id] = event.target.value;
 
         this.setState({
@@ -78,9 +61,6 @@ class ModalUser extends Component {
         let isValid = true;
         let arrInput = ['email', 'password', 'firstName', 'lastName', 'address', 'phonenumber'];
         for(let i=0; i < arrInput.length; i++){
-
-            //console.log("check inside loop:" + this.state[arrInput[i]]);
-
             if(!this.state[arrInput[i]]){
                 isValid = false;    
                 alert('Missing parameter: ' + arrInput[i]);
@@ -100,22 +80,9 @@ class ModalUser extends Component {
 
             console.log("data modal:", this.state);
         }
-        //clear data modal create user
-        // this.setState({
-        //     email: '',
-        //     password: '',
-        //     firstName: '',
-        //     lastName: '',
-        //     address: '',
-        //     phonenumber: '',
-        //     gender: '',
-        //     roleId: '',
-        // })
     }
 
     render() {
-        //console.log("check child props: ", this.props); //props >>> {isOpen: true}
-        //console.log("check childs open modal isOpen", this.props.isOpen);
         return (
             <Modal isOpen={this.props.isOpen}
                     toggle={()=>{this.toggle()}}
@@ -128,9 +95,8 @@ class ModalUser extends Component {
                     <ModalBody>
                         
                     <div className="container">
-                        <div className="row">
                         {/* <form action="/post-crud" method="POST"> */}
-                            <div className="row">
+                            <div className="form-row">
                                 <div className="form-group col-6">
                                     <label >Email</label>
                                     <input type="email" 
@@ -155,7 +121,7 @@ class ModalUser extends Component {
                                 </div>
                             </div>
 
-                            <div className="row mt-4">
+                            <div className="form-row mt-1">
                                 <div className="form-group col-6">
                                     <label >First name</label>
                                     <input type="text"
@@ -180,7 +146,7 @@ class ModalUser extends Component {
                                 </div>
                             </div>
 
-                            <div className="form-group mt-4 col-12">
+                            <div className="form-group mt-1">
                                 <label >Address</label>
                                 <input type="text"
                                         className="form-control"
@@ -190,7 +156,7 @@ class ModalUser extends Component {
                                         }}
                                         value={this.state.address}></input>
                             </div>
-                            <div className="row mt-4">
+                            <div className="form-row mt-1">
                                 <div className="form-group col-6">
                                     <label >Phone number</label>
                                     <input type="text"
@@ -228,8 +194,6 @@ class ModalUser extends Component {
                                     </select>
                                 </div>
                             </div>
-                        {/* </form> */}
-                        </div>
                     </div>
 
                     </ModalBody>
