@@ -11,7 +11,7 @@ import { dateFilter } from 'react-bootstrap-table2-filter';
 
 
 class Login extends Component {
-        constructor(props) { {/**Constructor là hàm tạo <<>> khai báo các state */}
+        constructor(props) {
         super(props);
         this.state = { //state login có 2 biến component cần ql là username và password
             username: '',
@@ -20,9 +20,6 @@ class Login extends Component {
             errMessage: ""
         }
     }
-
-    //state quản lý các giá trị của component
-    //state là biến lưu giữ giá trị component suốt quá trình hđ
 
     handleOnChangeUsername = (event) =>{
         this.setState({
@@ -35,9 +32,6 @@ class Login extends Component {
         })
     }
     handleLogin = async () => {
-        console.log("username: ", this.state.username, "password: ", this.state.password);
-        console.log(this.state);
-
         this.setState({
             errMessage: ""
         })

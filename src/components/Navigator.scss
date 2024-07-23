@@ -44,10 +44,10 @@
 
                 &.active {
                     a {
-                        color: blue;
+                        color: $common-text-color-active;
                     }
 
-                    background-color: #ededed;
+                    background-color: $bg-menu-color-active;
                 }
 
                 .menu-link {

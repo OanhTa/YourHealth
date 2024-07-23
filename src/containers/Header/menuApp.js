@@ -1,6 +1,6 @@
 export const adminMenu = [
     { //quan ly nguoi dung
-        name: 'menu.admin.manage-user',
+        name: 'menu.admin.user',
         menus: [
             {
                 name: 'menu.admin.crud', link: '/system/user-manage',
