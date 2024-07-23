@@ -18,12 +18,15 @@ let checkUserEmail = (email)=>{
     });
 }
 
-let handleUserLogin = (email, pass)=>{
+let handleUserLogin = async(email, pass)=>{
     return new Promise( async(resolve, reject) =>{
         try {
             let userData = {}
-            var user = checkUserEmail(data.email);
-
+            
+            var user = await db.User.findOne({ 
+                where: { email: email },
+                attributes: ['email','roleId','password','firstName', 'lastName'],
+            });
             //Ktra email có tồn tại khong
             if(user){
                 //So sánh password có giống
@@ -93,24 +96,25 @@ let createNewUser = (data)=>{
                         errCode: 1,
                         message: 'Your email is already used. Please try another email'
                     });
+                }else{
+                    let hashPass = await hashUserPassword(data.password)
+                    await db.User.create({
+                        firstName: data.firstname,
+                        lastName: data.lastname,
+                        email: data.email,
+                        password:hashPass,
+                        address: data.address,
+                        gender: data.gender == '1' ? true : false,
+                        roleId: data.role,
+                        phonenumber:data.phone,
+                        // positionId: data.position,
+                        // image: data.image
+                    });
+                    resolve({
+                        errCode: 0,
+                        message: 'Create Successful'
+                    });
                 }
-                let hashPass = await hashUserPassword(data.password)
-                await db.User.create({
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    email: data.email,
-                    password:hashPass,
-                    address: data.address,
-                    gender: data.gender == '1' ? true : false,
-                    roleId:data.role,
-                    phonenumber:data.phonenumber,
-                    // positionId: data.position,
-                    // image: data.image
-            });
-            resolve({
-                errCode: 0,
-                message: 'Create Successful'
-            });
             } catch (error) {
                 reject(error);
             }
@@ -162,6 +166,7 @@ let editUser = (data)=>{
                 await user.save();
 
                 resolve({
+                    user,
                     errCode: 0,
                     message: 'Update the user succeeds!'
                 }); 
@@ -178,10 +183,33 @@ let editUser = (data)=>{
         }
     });
 }
+let getAllCodeService =(type)=>{
+    return new Promise(async(resolve, reject)=>{
+        try {
+            if(!type){
+                resolve({
+                    errCode: 1,
+                    message: 'Missing required paramenters!'
+                }); 
+            }else{
+                let allcode = await db.Allcode.findAll({
+                    where: {type },
+                })
+                resolve({
+                    errCode: 0,
+                    data: allcode
+                })
+            }
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
 module.exports = {
     handleUserLogin,
     getAllUser,
     createNewUser,
     deleteUser,
-    editUser
+    editUser,
+    getAllCodeService
 }

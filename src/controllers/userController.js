@@ -3,7 +3,7 @@ import userService from "../services/userService";
 
 let handleLogin = async(req, res)=>{
     let email = req.body.email;
-    let pass = req.body. password;
+    let pass = req.body.password;
 
     if(!email || !pass){
         return res.status(500).json({
@@ -12,6 +12,7 @@ let handleLogin = async(req, res)=>{
         })
     }
     let userData = await userService.handleUserLogin(email,pass)
+    console.log(userData.user)
 
     return res.status(200).json({
         errCode: userData.errCode,
@@ -54,10 +55,23 @@ let handleDeleteUser = async(req, res)=>{
     return res.status(200).json(mess)
 
 }
+let getAllCode = async(req, res)=>{
+    try {
+        let type = req.query.type
+        let data = await userService.getAllCodeService(type);
+        return res.status(200).json(data)
+    } catch (error) {
+        res.status(200).json({
+            errCode:-1,
+            Message:'Error the server',
+       })
+    }
+}
 module.exports = {
     handleLogin,
     handleGetAllUser,
     handleCreateNewUser,
     handleEditUser,
-    handleDeleteUser
+    handleDeleteUser,
+    getAllCode
 }
