@@ -1,5 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# BookingCare Frontend
 
+BookingCare is an online medical appointment booking system. This repository contains the frontend part of the project, built with ReactJS and state management using Redux.
 ## Available Scripts
 
 In the project directory, you can run:
