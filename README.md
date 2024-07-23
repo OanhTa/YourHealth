@@ -10,12 +10,11 @@ This is the backend for the BookingCare project, a medical appointment schedulin
 - [API Endpoints](#api-endpoints)
 - [Database Schema](#database-schema)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
-1. **Clone the repository:**
-
    ```bash
-   git clone https://github.com/your-username/bookingcare-backend.git
-   cd bookingcare-backend
+   npm install
+
+
+
