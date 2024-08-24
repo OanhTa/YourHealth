@@ -9,7 +9,8 @@ const config = {
     query: {
       raw: true
     },
-    timezone: '+07:00'
+    timezone: '+07:00',
+    logging: console.log, // Log all SQL queries
   },
   test: {
     username: "root",

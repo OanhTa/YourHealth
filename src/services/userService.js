@@ -99,16 +99,16 @@ let createNewUser = (data)=>{
                 }else{
                     let hashPass = await hashUserPassword(data.password)
                     await db.User.create({
-                        firstName: data.firstname,
-                        lastName: data.lastname,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
                         email: data.email,
                         password:hashPass,
                         address: data.address,
-                        gender: data.gender == '1' ? true : false,
-                        roleId: data.role,
-                        phonenumber:data.phone,
-                        // positionId: data.position,
-                        // image: data.image
+                        gender: data.gender,
+                        roleId: data.roleId,
+                        phonenumber:data.phonenumber,
+                        positionId: data.positionId,
+                        image: data.avatar
                     });
                     resolve({
                         errCode: 0,
@@ -162,7 +162,11 @@ let editUser = (data)=>{
                 user.firstName = data.firstName;
                 user.lastName = data.lastName;
                 user.address = data.address;
-                user.phonenumber = data.phonenumber;
+                user.phonenumber = data.phonenumber;         
+                user.gender= data.gender,
+                user.roleId= data.roleId,
+                user.positionId= data.positionId,
+                user.image= data.avatar
                 await user.save();
 
                 resolve({

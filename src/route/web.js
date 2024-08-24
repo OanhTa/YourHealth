@@ -1,5 +1,6 @@
 import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
+import doctorController from "../controllers/doctorController";
 
 let initWebRoutes = ( app)=>{
     app.get("/", homeController.getHomePage)
@@ -18,7 +19,11 @@ let initWebRoutes = ( app)=>{
     app.put("/api/edit-user", userController.handleEditUser)
     app.delete("/api/delete-user", userController.handleDeleteUser)
 
-    app.get("/all-code", userController.getAllCode)
+    app.get("/api/all-code", userController.getAllCode)
+    app.get("/api/top-doctor-home", doctorController.getTopDoctorHome)
+    app.get("/api/get-all-doctors", doctorController.getAllDoctor)
+    app.post("/api/save-infor-doctor", doctorController.saveInfoDoctor)
+    app.get("/api/get-infor-doctor", doctorController.getInfoDoctor)
 }
 
 module.exports = initWebRoutes;

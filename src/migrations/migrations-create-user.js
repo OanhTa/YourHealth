@@ -28,7 +28,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       roleId: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.STRING
       },
       phonenumber: {
         type: Sequelize.STRING
