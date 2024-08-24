@@ -1,10 +1,11 @@
 import { suppressDeprecationWarnings } from 'moment/moment';
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageUser.scss';
 import _ from 'lodash';
 import * as actions from '../../../store/actions'
+
+
 
 class TableManageUser extends Component {
 
@@ -37,12 +38,10 @@ class TableManageUser extends Component {
     }
 
     render() {
-        
-        // console.log('check: ', this.props.listUsers);
-        // console.log('check: ', this.props.usersRedux);
         let arrUsers = this.state.usersRedux;
         return (
-                <div className='users-table mt-4 mx-3'>
+            <React.Fragment>
+                <div className='users-table my-4'>
                     <table id="customers">
                     <tbody>
                         <tr>
@@ -83,6 +82,7 @@ class TableManageUser extends Component {
                         </tbody>       
                     </table>
                 </div>
+            </React.Fragment>
     )};
 
 }

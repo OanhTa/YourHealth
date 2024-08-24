@@ -9,5 +9,6 @@ export default {
          * this to the sub-directory. A properly formatted basename should have a leading slash, but no trailing slash.
          */
         ROUTER_BASE_NAME: null,
-    }
+    },
+    
 };

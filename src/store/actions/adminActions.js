@@ -2,22 +2,20 @@ import actionTypes from './actionTypes';
 import {getAllCodeService, CreateNewUserServiceAPI,
     EditUserServiceAPI, getAllUser,
     DeleteUserServiceAPI,
-    getTopDoctorHomeServiceAPI,
-    } from '../../services/userService';
+    getTopDoctorHomeServiceAPI, getAllDoctorService, saveInfoDoctorServie} from '../../services/userService';
 import { toast } from 'react-toastify';
+
 //start doing end
 
-// export const fetchGenderStart = () => ({
-//     type: actionTypes.FETCH_GENDER_START
-// })
-
-export const fetchGenderStart = (dispatch, getState) => {
+export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
         try {
-            dispatch({ type: actionTypes.FETCH_GENDER_START })
+            dispatch({ 
+                type: actionTypes.FETCH_GENDER_START,
+            })
 
             let res = await getAllCodeService("gender");
-            // console.log("check getallcode gender: ", res);
+            
             if(res && res.errCode === 0){
                 dispatch(fetchGenderSuccess(res.data));
             }else{
@@ -42,10 +40,8 @@ export const fetchGenderFailed = () => ({
 export const fetchPositionStart = (dispatch, getState) => {
     return async (dispatch, getState) => {
         try {
-            // dispatch({ type: actionTypes.FETCH_GENDER_START })
-
             let res = await getAllCodeService("position");
-            // console.log("check getallcode gender: ", res);
+       
             if(res && res.errCode === 0){
                 dispatch(fetchPositionSuccess(res.data));
             }else{
@@ -53,7 +49,6 @@ export const fetchPositionStart = (dispatch, getState) => {
             }
         } catch (e) {
             dispatch(fetchPositionFailed());
-            console.log("fetchPositionStart error",e);
         }
     }
 }
@@ -70,10 +65,8 @@ export const fetchPositionFailed = () => ({
 export const fetchRoleStart = (dispatch, getState) => {
     return async (dispatch, getState) => {
         try {
-            // dispatch({ type: actionTypes.FETCH_GENDER_START })
-
             let res = await getAllCodeService("role");
-            // console.log("check getallcode gender: ", res);
+
             if(res && res.errCode === 0){
                 dispatch(fetchRoleSuccess(res.data));
             }else{
@@ -81,7 +74,6 @@ export const fetchRoleStart = (dispatch, getState) => {
             }
         } catch (e) {
             dispatch(fetchRoleFailed());
-            console.log("fetchRoleStart error",e);
         }
     }
 }
@@ -99,7 +91,7 @@ export const createNewUser = (data) => {
     return async (dispatch, getState) => {
         try {
             let res = await CreateNewUserServiceAPI(data);
-            // console.log("check create user redux: ", res);
+            console.log('check '+ data)
             if(res && res.errCode === 0){
                 toast.success("Create a new user succeed ")
                 dispatch(saveUserSuccess());
@@ -116,7 +108,6 @@ export const createNewUser = (data) => {
 
 export const saveUserSuccess = () => ({
     type: actionTypes.CREATE_USER_SUCCESS
-
 })
 
 export const saveUserFailed = () => ({
@@ -126,8 +117,6 @@ export const saveUserFailed = () => ({
 export const fetchAllUsersStart = (dispatch, getState) => {
     return async (dispatch, getState) => {
         try {
-            // dispatch({ type: actionTypes.FETCH_GENDER_START })
-
             let res = await getAllUser("ALL");
             // console.log("check topdoctor: ", res_topdoctor);
             if(res && res.errCode === 0){
@@ -215,8 +204,7 @@ export const editUserFailed = () => ({
 export const fetchTopDoctor = () => {
     return async (dispatch, getState) => {
         try {
-            let res = await getTopDoctorHomeServiceAPI('');
-            console.log("check fetch top doctor: ", res);
+            let res = await getTopDoctorHomeServiceAPI();
             if(res && res.errCode === 0){
                 dispatch({
                     type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
@@ -231,6 +219,53 @@ export const fetchTopDoctor = () => {
             console.log('FETCH_TOP_DOCTORS_FAILED', e);
             dispatch({
                 type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+            })
+        }
+    }
+}
+
+export const fetchAllDoctor= () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctorService();
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+                    allDoctor: res.data
+                })
+            }else{
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
+                })
+            }
+        } catch (e) {
+            console.log('FETCH_ALL_DOCTOR_FAILED', e);
+            dispatch({
+                type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
+            })
+        }
+    }
+}
+
+export const fetchSaveInfoDoctor= (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveInfoDoctorServie(data);
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_SAVE_INFO_DOCTOR_SUCCESS,
+                    allDoctor: res.data
+                })
+            }else{
+                toast.success('Save successfully')
+                dispatch({
+                    type: actionTypes.FETCH_SAVE_INFO_DOCTOR_FAILED,
+                })
+            }
+        } catch (e) {
+            toast.error('Save error')
+            dispatch({
+                type: actionTypes.FETCH_SAVE_INFO_DOCTOR_FAILED,
             })
         }
     }

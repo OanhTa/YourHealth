@@ -28,11 +28,19 @@ const EditUserServiceAPI = (dataEdit) => {
 }
 
 const getAllCodeService = (inputtype) => {
-    return axios.get(`/api/allcode?type=${inputtype}`);
+    return axios.get(`/api/all-code?type=${inputtype}`);
 }
 
 const getTopDoctorHomeServiceAPI = (limit) => {
-    return axios.get(`/api/top-doctor-homepage?limit=${limit}`);
+    // return axios.get(`/api/top-doctor-home?limit=${limit}`);
+    return axios.get(`/api/top-doctor-home`);
+}
+const getAllDoctorService = () => {
+    return axios.get(`/api/get-all-doctors`);
+}
+
+const saveInfoDoctorServie = (data) => {
+    return axios.post(`/api/save-infor-doctor`, data);
 }
 
 export {
@@ -42,5 +50,7 @@ export {
     DeleteUserServiceAPI,
     EditUserServiceAPI,
     getAllCodeService,
-    getTopDoctorHomeServiceAPI
+    getTopDoctorHomeServiceAPI,
+    getAllDoctorService,
+    saveInfoDoctorServie
 }

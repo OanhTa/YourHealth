@@ -51,8 +51,8 @@ class Doctor extends Component {
                                     if(item.image){
                                         imageBase64 = new Buffer(item.image, 'base64').toString('binary');
                                     }
-                                    let nameVI = `${item.positionData.valueVI}, ${item.lastName}, ${item.firstName}`;
-                                    let nameEN = `${item.positionData.valueEN}, ${item.lastName}, ${item.firstName}`;
+                                    let nameVI = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                                    let nameEN = `${item.positionData.valueEn}, ${item.lastName} ${item.firstName}`;
                                     return(
                                         <div className='section-customize' key={index}>
                                             <div className='outer-bg'>

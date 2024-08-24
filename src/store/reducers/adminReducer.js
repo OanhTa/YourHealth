@@ -6,7 +6,8 @@ const initialState = {
     roles: [],
     isLoadingGender: false,
     users: [],
-    topDoctors: []
+    topDoctors: [],
+    allDoctor:[],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -19,43 +20,33 @@ const adminReducer = (state = initialState, action) => {
                 ...copyState,
             }
         case actionTypes.FETCH_GENDER_SUCCESS:
-            // let copyState = {...state};
             state.isLoadingGender = false;
             state.genders = action.data;
             return {
                 ...state,
             }
         case actionTypes.FETCH_GENDER_FAILED:
-            // let copyState = {...state};
             state.isLoadingGender = false;
             state.genders = [];
             return {
                 ...state,
             }
         case actionTypes.FETCH_POSITION_SUCCESS:
-            // let copyState = {...state};
-            
             state.positions = action.data;
             return {
                 ...state,
             }
         case actionTypes.FETCH_POSITION_FAILED:
-            // let copyState = {...state};
-            
             state.positions = [];
             return {
                 ...state,
             }
-        case actionTypes.FETCH_ROLE_SUCCESS:
-            // let copyState = {...state};
-            
+        case actionTypes.FETCH_ROLE_SUCCESS:;          
             state.roles = action.data;
             return {
                 ...state,
             }
-        case actionTypes.FETCH_ROLE_FAILED:
-            // let copyState = {...state};
-            
+        case actionTypes.FETCH_ROLE_FAILED:        
             state.roles = [];
             return {
                 ...state,
@@ -80,6 +71,17 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+        case actionTypes.FETCH_ALL_DOCTOR_SUCCESS:
+                state.allDoctor = action.allDoctor;
+                return {
+                    ...state
+                }
+        case actionTypes.FETCH_ALL_DOCTOR_FAILED:
+                state.allDoctor = [];
+                return {
+                    ...state
+                }
+       
         default:
             return state;
     }
