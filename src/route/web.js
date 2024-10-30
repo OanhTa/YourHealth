@@ -24,6 +24,8 @@ let initWebRoutes = ( app)=>{
     app.get("/api/get-all-doctors", doctorController.getAllDoctor)
     app.post("/api/save-infor-doctor", doctorController.saveInfoDoctor)
     app.get("/api/get-infor-doctor", doctorController.getInfoDoctor)
+    app.post("/api/bulk-create-schedule", doctorController.bulkCreateSchedule)
+    app.get("/api/get-all-schedule", doctorController.getAllSchedule)
 }
 
 module.exports = initWebRoutes;
