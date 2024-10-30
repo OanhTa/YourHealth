@@ -35,6 +35,25 @@
             "manage-specialty": "Quản lý Chuyên Khoa",
             "handbook": "Cẩm nang",
             "manage-handbook": "Quản lý cẩm nang"
+        },
+        "doctor": {
+            "schedule": "Lịch khám",
+            "manage-schedule": "Quản lý đặt lịch khám"
+        }
+    },
+    "system": {
+        "doctor": {
+            "create-info-doctor": "Tạo thêm thông tin bác sĩ",
+            "select-doctor": "Chọn bác sĩ",
+            "intro-doctor": "Thông tin giới thiệu",
+            "select-price": "Chọn giá",
+            "select-method-pay": "Chọn phương thức thanh toán",
+            "select-province": "Chọn tỉnh thành",
+            "name-clinic": "Tên phòng khám",
+            "address-clinic": "Địa chỉ phòng khám",
+            "node": "Ghi chú",
+            "add": "Tạo thông tin",
+            "save": "Lưu thông tin"
         }
     },
     "manage-user": {
@@ -52,8 +71,19 @@
         "save": "Lưu",
         "edit": "Lưu chỉnh sửa"
     },
+    "manager-schedule": {
+        "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
+        "choose-doctor": "Chọn bác sĩ",
+        "choose-date": "Chọn ngày",
+        "save-schedule": "Lưu thông tin"
+    },
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
         "more": "Xem thêm"
+    },
+    "section-doctor": {
+        "schedule": "Lịch khám",
+        "message": "Không có lịch khám trong ngày này. Vui lòng lựa chọn ngày khác!",
+        "book-free": "Chọn và đặt lịch miễn phí "
     }
 }

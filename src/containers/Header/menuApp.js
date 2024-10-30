@@ -18,6 +18,14 @@ export const adminMenu = [
             
         ]
     },
+    { //quan ly lịch kham
+        name: 'menu.doctor.schedule',
+        menus: [
+            {
+                name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
+            }
+        ]
+    },
     { //quan ly phong kham
         name: 'menu.admin.clinic',
         menus: [
@@ -39,6 +47,17 @@ export const adminMenu = [
         menus: [
             {
                 name: 'menu.admin.manage-handbook', link: '/system/manage-handbook',
+            }
+        ]
+    },
+];
+
+export const doctorMenu = [
+    { //quan ly lịch kham
+        name: 'menu.doctor.schedule',
+        menus: [
+            {
+                name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
             }
         ]
     },

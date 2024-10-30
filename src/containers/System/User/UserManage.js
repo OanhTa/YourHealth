@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import {DeleteUserServiceAPI, EditUserServiceAPI, getAllUser} from '../../services/userService';
-import {CreateNewUserServiceAPI} from '../../services/userService';
+import {DeleteUserServiceAPI, EditUserServiceAPI, getAllUser} from '../../../services/userService';
+import {CreateNewUserServiceAPI} from '../../../services/userService';
 import ModalUser from './ModalUser';
 import ModalEditUser from './ModalEditUser';
-import {emitter} from '../../utils/emitter';
+import {emitter} from '../../../utils/emitter';
 import _ from 'lodash';
 
 class UserManage extends Component {

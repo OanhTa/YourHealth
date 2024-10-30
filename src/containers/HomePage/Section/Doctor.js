@@ -6,9 +6,11 @@ import * as actions from '../../../store/actions';
 import Slider from 'react-slick';
 import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
+import { withRouter } from 'react-router'; 
 
 class Doctor extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -28,13 +30,13 @@ class Doctor extends Component {
             })
         }
     }
-
+    hadeleViewDetailDoctor =(doctor)=>{
+        this.props.history.push(`/doctor-info/${doctor.id}`);
+    }
 
     render() {
         let arrDoctors = this.state.arrDoctors;
         let language = this.props.language;
-        // console.log("check arrDoctors:", arrDoctors);
-        // arrDoctors =arrDoctors.concat(arrDoctors).concat(arrDoctors)
 
         return (
             <div className='section-share section-doctor'>
@@ -51,10 +53,10 @@ class Doctor extends Component {
                                     if(item.image){
                                         imageBase64 = new Buffer(item.image, 'base64').toString('binary');
                                     }
-                                    let nameVI = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                                    let nameVI = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
                                     let nameEN = `${item.positionData.valueEn}, ${item.lastName} ${item.firstName}`;
                                     return(
-                                        <div className='section-customize' key={index}>
+                                        <div className='section-customize' key={index} onClick={()=>{this.hadeleViewDetailDoctor(item)}}>
                                             <div className='outer-bg'>
                                                 <div className='bg-image section-doctor'
                                                     style={{backgroundImage: `url(${imageBase64})`}}
@@ -93,4 +95,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Doctor);
+export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(Doctor));

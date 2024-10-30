@@ -35,6 +35,25 @@
             "manage-specialty": "Specialized Management",
             "handbook": "Handbook",
             "manage-handbook": "Handbook Management"
+        },
+        "doctor": {
+            "schedule": "Schedule",
+            "manage-schedule": "Schedule Management"
+        }
+    },
+    "system": {
+        "doctor": {
+            "create-info-doctor": "Create more information doctors",
+            "select-doctor": "Select doctor",
+            "intro-doctor": "Introduction",
+            "select-price": "Select price",
+            "select-method-pay": "Select method payment",
+            "select-province": "Select province",
+            "name-clinic": "Clinic name",
+            "address-clinic": "Clinic Address",
+            "node": "Note",
+            "add": "Create information",
+            "save": "Save information"
         }
     },
     "manage-user": {
@@ -52,8 +71,19 @@
         "save": "Save",
         "edit": "Save change"
     },
+    "manager-schedule": {
+        "title": "Manage the doctor's medical examination schedule",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save-schedule": "Save information"
+    },
     "homepage": {
         "out-standing-doctor": "Lastweek featured doctor",
         "more": "More Info"
+    },
+    "section-doctor": {
+        "schedule": "Schedule",
+        "message": "There are no appointments scheduled for this day. Please choose another day!",
+        "book-free": "Choose and book free "
     }
 }

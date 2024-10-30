@@ -1,0 +1,28 @@
+.manager-schedule{
+    margin-top: 1rem;
+    .m-s-title{
+        text-transform: uppercase;
+        text-align: center;
+        color: blue;
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+    .container{
+        margin-top: 2rem;
+        margin-left: 2.4rem;
+        .m-s-hour{
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            .btn-schedule{
+                border: 1px solid #ccc;
+                &.isSelected{
+                    background-color: rgb(169, 212, 248);
+                }
+            }
+        }
+    }
+}

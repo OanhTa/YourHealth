@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import {Button, Modal ,ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import './UserManage.scss';
-import { emitter } from '../../utils/emitter';
+import { emitter } from '../../../utils/emitter';
 
 
 class ModalUser extends Component {

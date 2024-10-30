@@ -86,6 +86,40 @@ export const fetchRoleSuccess = (roleData) => ({
 export const fetchRoleFailed = () => ({
     type: actionTypes.FETCH_ROLE_FAILED
 })
+export const fetchDoctorDetailStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let resPrice = await getAllCodeService("PRICE");
+            let resPayment = await getAllCodeService("PAYMENT");
+            let resProvince = await getAllCodeService("PROVINCE");
+            
+            if(resPrice && resPrice.errCode === 0
+                && resPayment && resPayment.errCode === 0
+                && resProvince && resProvince.errCode === 0
+            ){
+                dispatch(fetchDoctorDetailSuccess({
+                    resPrice: resPrice.data,
+                    resPayment: resPayment.data, 
+                    resProvince: resProvince.data
+                }));
+            }else{
+                dispatch(fetchDoctorDetailFailed());
+            }
+        } catch (e) {
+            dispatch(fetchDoctorDetailFailed());
+            console.log("fetchDoctorDetailFailed error",e);
+        }
+    }
+}
+
+export const fetchDoctorDetailSuccess = (data) => ({
+    type: actionTypes.FETCH_DOCTOR__DETAIL_SUCCESS,
+    data
+})
+
+export const fetchDoctorDetailFailed = () => ({
+    type: actionTypes.FETCH_DOCTOR__DETAIL_FAILED
+})
 
 export const createNewUser = (data) => {
     return async (dispatch, getState) => {
@@ -266,6 +300,29 @@ export const fetchSaveInfoDoctor= (data) => {
             toast.error('Save error')
             dispatch({
                 type: actionTypes.FETCH_SAVE_INFO_DOCTOR_FAILED,
+            })
+        }
+    }
+}
+
+export const fetchAllScheduleTimes= () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService("TIME");
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_TIME_SCHEDULE_SUCCESS,
+                    dataTimes: res.data
+                })
+            }else{
+                dispatch({
+                    type: actionTypes.FETCH_TIME_SCHEDULE_FAILED,
+                })
+            }
+        } catch (e) {
+            console.log('FETCH_TIME_SCHEDULE_FAILED', e);
+            dispatch({
+                type: actionTypes.FETCH_TIME_SCHEDULE_FAILED,
             })
         }
     }
