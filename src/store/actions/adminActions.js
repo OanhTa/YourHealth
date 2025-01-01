@@ -2,7 +2,9 @@ import actionTypes from './actionTypes';
 import {getAllCodeService, CreateNewUserServiceAPI,
     EditUserServiceAPI, getAllUser,
     DeleteUserServiceAPI,
-    getTopDoctorHomeServiceAPI, getAllDoctorService, saveInfoDoctorServie} from '../../services/userService';
+    getTopDoctorHomeServiceAPI, getAllDoctorService, saveInfoDoctorServie,
+    getAllSpecialtyServie,
+    getAllClinicServie} from '../../services/userService';
 import { toast } from 'react-toastify';
 
 //start doing end
@@ -92,15 +94,20 @@ export const fetchDoctorDetailStart = () => {
             let resPrice = await getAllCodeService("PRICE");
             let resPayment = await getAllCodeService("PAYMENT");
             let resProvince = await getAllCodeService("PROVINCE");
+            let resSpecialty = await getAllSpecialtyServie();
+            let resClinic = await getAllClinicServie();
             
             if(resPrice && resPrice.errCode === 0
                 && resPayment && resPayment.errCode === 0
                 && resProvince && resProvince.errCode === 0
+                && resSpecialty && resSpecialty.errCode === 0 && resClinic.errCode === 0
             ){
                 dispatch(fetchDoctorDetailSuccess({
                     resPrice: resPrice.data,
                     resPayment: resPayment.data, 
-                    resProvince: resProvince.data
+                    resProvince: resProvince.data,
+                    resSpecialty: resSpecialty.data,
+                    resClinic: resClinic.data
                 }));
             }else{
                 dispatch(fetchDoctorDetailFailed());

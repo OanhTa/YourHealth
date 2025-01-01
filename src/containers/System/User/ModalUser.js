@@ -89,113 +89,110 @@ class ModalUser extends Component {
                     className={'modal-user-container'}
                     //size="sm"
                     centered
-            
             >
                 <ModalHeader toggle={()=>{this.toggle()}} charCode="X">Create a new user</ModalHeader>
-                    <ModalBody>
-                        
-                    <div className="container">
-                        {/* <form action="/post-crud" method="POST"> */}
-                            <div className="form-row">
-                                <div className="form-group col-6">
-                                    <label >Email</label>
-                                    <input type="email" 
-                                            className="form-control" 
-                                            placeholder="Email" 
-                                            name="email"
-                                            onChange={(event) => {
-                                                this.handleOnChangeInput(event, "email")
-                                            }}
-                                            value={this.state.email}></input>
+                    <ModalBody>                     
+                        <div className="container">
+                            {/* <form action="/post-crud" method="POST"> */}
+                                <div className="form-row">
+                                    <div className="form-group col-6">
+                                        <label >Email</label>
+                                        <input type="email" 
+                                                className="form-control" 
+                                                placeholder="Email" 
+                                                name="email"
+                                                onChange={(event) => {
+                                                    this.handleOnChangeInput(event, "email")
+                                                }}
+                                                value={this.state.email}></input>
+                                    </div>
+                                    <div className="form-group col-6">
+                                        <label >Password</label>
+                                        <input type="password"
+                                                className="form-control" 
+                                                placeholder="Password" 
+                                                name="password"
+                                                onChange={(event) => {
+                                                    this.handleOnChangeInput(event, "password")
+                                                }}
+                                                value={this.state.password}></input>
+                                    </div>
                                 </div>
-                                <div className="form-group col-6">
-                                    <label >Password</label>
-                                    <input type="password"
-                                            className="form-control" 
-                                            placeholder="Password" 
-                                            name="password"
-                                            onChange={(event) => {
-                                                this.handleOnChangeInput(event, "password")
-                                            }}
-                                            value={this.state.password}></input>
-                                </div>
-                            </div>
 
-                            <div className="form-row mt-1">
-                                <div className="form-group col-6">
-                                    <label >First name</label>
+                                <div className="form-row mt-1">
+                                    <div className="form-group col-6">
+                                        <label >First name</label>
+                                        <input type="text"
+                                                className="form-control"
+                                                placeholder="First name"
+                                                name="firstName"
+                                                onChange={(event) => {
+                                                    this.handleOnChangeInput(event, "firstName")
+                                                }}
+                                                value={this.state.firstName}></input>
+                                    </div>
+                                    <div className="form-group col-6">
+                                        <label >Last name</label>
+                                        <input type="text"
+                                                className="form-control"
+                                                placeholder="Last name"
+                                                name="lastName"
+                                                onChange={(event) => {
+                                                    this.handleOnChangeInput(event, "lastName")
+                                                }}
+                                                value={this.state.lastName}></input>
+                                    </div>
+                                </div>
+
+                                <div className="form-group mt-1">
+                                    <label >Address</label>
                                     <input type="text"
                                             className="form-control"
-                                            placeholder="First name"
-                                            name="firstName"
+                                            name="address"
                                             onChange={(event) => {
-                                                this.handleOnChangeInput(event, "firstName")
+                                                this.handleOnChangeInput(event, "address")
                                             }}
-                                            value={this.state.firstName}></input>
+                                            value={this.state.address}></input>
                                 </div>
-                                <div className="form-group col-6">
-                                    <label >Last name</label>
-                                    <input type="text"
-                                            className="form-control"
-                                            placeholder="Last name"
-                                            name="lastName"
-                                            onChange={(event) => {
-                                                this.handleOnChangeInput(event, "lastName")
-                                            }}
-                                            value={this.state.lastName}></input>
+                                <div className="form-row mt-1">
+                                    <div className="form-group col-6">
+                                        <label >Phone number</label>
+                                        <input type="text"
+                                                className="form-control"
+                                                name="phonenumber"
+                                                placeholder="+84"
+                                                onChange={(event) => {
+                                                    this.handleOnChangeInput(event, "phonenumber")
+                                                }}
+                                                value={this.state.phonenumber}></input>
+                                    </div>
+                                    <div className="form-group col-3">
+                                        <label >Sex</label>
+                                        <select name="gender"
+                                                className="form-control"
+                                                onChange={(event) => {
+                                                    this.handleOnChangeInput(event, "gender")
+                                                }}
+                                                value={this.state.gender}>
+                                        <option value="1">Male</option>
+                                        <option value="0">Female</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-group col-3">
+                                        <label >Role</label>
+                                        <select name="roleId"
+                                                className="form-control"
+                                                onChange={(event) => {
+                                                    this.handleOnChangeInput(event, "roleId")
+                                                }}
+                                                value={this.state.roleId}>
+                                        <option value="1">Admin</option>
+                                        <option value="2">Doctor</option>
+                                        <option value="3">Patient</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className="form-group mt-1">
-                                <label >Address</label>
-                                <input type="text"
-                                        className="form-control"
-                                        name="address"
-                                        onChange={(event) => {
-                                            this.handleOnChangeInput(event, "address")
-                                        }}
-                                        value={this.state.address}></input>
-                            </div>
-                            <div className="form-row mt-1">
-                                <div className="form-group col-6">
-                                    <label >Phone number</label>
-                                    <input type="text"
-                                            className="form-control"
-                                            name="phonenumber"
-                                            placeholder="+84"
-                                            onChange={(event) => {
-                                                this.handleOnChangeInput(event, "phonenumber")
-                                            }}
-                                            value={this.state.phonenumber}></input>
-                                </div>
-                                <div className="form-group col-3">
-                                    <label >Sex</label>
-                                    <select name="gender"
-                                            className="form-control"
-                                            onChange={(event) => {
-                                                this.handleOnChangeInput(event, "gender")
-                                            }}
-                                            value={this.state.gender}>
-                                    <option value="1">Male</option>
-                                    <option value="0">Female</option>
-                                    </select>
-                                </div>
-                                <div className="form-group col-3">
-                                    <label >Role</label>
-                                    <select name="roleId"
-                                            className="form-control"
-                                            onChange={(event) => {
-                                                this.handleOnChangeInput(event, "roleId")
-                                            }}
-                                            value={this.state.roleId}>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Doctor</option>
-                                    <option value="3">Patient</option>
-                                    </select>
-                                </div>
-                            </div>
-                    </div>
-
+                        </div>
                     </ModalBody>
                     <ModalFooter>
                         <Button className='px-2'

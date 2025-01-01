@@ -28,9 +28,16 @@ class ManagerDoctorInfo extends Component {
 
             //save to doctor-detail table
             arrPrice: [],
+            arrSpecialty: [],
+            arrClinic: [],
             arrPayment: [],
             arrProvince: [],
+            arrSpecialty: [],
+            arrClinic: [],
+            
             selectedPrice: '',
+            selectedSpecialty: '',
+            selectedClinic: '',
             selectedPayment: '',
             selectedProvince: '',
             nameClicnic: '',
@@ -57,14 +64,32 @@ class ManagerDoctorInfo extends Component {
             let array = []
             data.map((item, index)=>{
                 let object = {}
-                let babelVi = `${item.valueVi}`
-                let babelEn = `${item.valueEn}`
-                object.value = item.keyMap
+                let babelVi = item.valueVi || item.name
+                let babelEn = item.valueEn || item.name
+                object.value = item.keyMap || item.id
                 object.label = this.props.language === LANGUAGES.VI? babelVi : babelEn
                 array.push(object)
             })
             return array
         }
+    }
+    buildStateToProp =()=>{
+        let detailDoctor = this.props.allDoctorDetail;         
+            if(detailDoctor){  
+                let dataPrice = this.buildDataInputSelectDetail(detailDoctor.resPrice)
+                let dataPayment = this.buildDataInputSelectDetail(detailDoctor.resPayment)
+                let dataProvince = this.buildDataInputSelectDetail(detailDoctor.resProvince)
+                let dataSpecialty = this.buildDataInputSelectDetail(detailDoctor.resSpecialty)
+                let dataClinic = this.buildDataInputSelectDetail(detailDoctor.resClinic)
+
+                this.setState({
+                    arrPrice: dataPrice,
+                    arrPayment: dataPayment,
+                    arrProvince: dataProvince,
+                    arrSpecialty: dataSpecialty,
+                    arrClinic: dataClinic
+                })
+            }
     }
     componentDidMount() {
         this.props.getAllDoctors();
@@ -79,32 +104,10 @@ class ManagerDoctorInfo extends Component {
             })
         }
         if(prevProps.language !== this.props.language){
-            let detailDoctor = this.props.allDoctorDetail || []; 
-
-            let dataName = this.buildDataInputSelect(this.props.allDoctor)
-            let dataPrice = this.buildDataInputSelectDetail(detailDoctor.resPrice)
-            let dataPayment = this.buildDataInputSelectDetail(detailDoctor.resPayment)
-            let dataProvince = this.buildDataInputSelectDetail(detailDoctor.resProvince)
-            this.setState({
-                allDoctor: dataName,
-                arrPrice: dataPrice,
-                arrPayment: dataPayment,
-                arrProvince: dataProvince,
-            })
+            this.buildStateToProp()
         }
         if(prevProps.allDoctorDetail !== this.props.allDoctorDetail){
-            let detailDoctor = this.props.allDoctorDetail;         
-            if(detailDoctor){  
-                let dataPrice = this.buildDataInputSelectDetail(detailDoctor.resPrice)
-                let dataPayment = this.buildDataInputSelectDetail(detailDoctor.resPayment)
-                let dataProvince = this.buildDataInputSelectDetail(detailDoctor.resProvince)
-
-                this.setState({
-                    arrPrice: dataPrice,
-                    arrPayment: dataPayment,
-                    arrProvince: dataProvince,
-                })
-            }
+            this.buildStateToProp()
         }
     }
     // Finish! Markdown
@@ -134,11 +137,12 @@ class ManagerDoctorInfo extends Component {
             selectedOption: selectedOption
         })
         let res = await getInfoDetailDoctorServie(selectedOption.value);
-        let {arrPayment, arrPrice, arrProvince } = this.state;
-        
+        let {arrPayment, arrPrice, arrProvince, arrSpecialty, arrClinic } = this.state;
+        console.log(res)
         if(res && res.errCode == 0 && res.data && res.data.Markdown && res.data.DoctorInfo){
             let mardown = res.data.Markdown
             let doctorDetail = res.data.DoctorInfo
+            
             this.setState({
                 contentMarkdown: mardown.contentMarkdown,
                 contentHTML: mardown.contentHTML,
@@ -146,6 +150,8 @@ class ManagerDoctorInfo extends Component {
                 selectedPrice: arrPrice.find(item=>item.value === doctorDetail.priceId),
                 selectedPayment: arrPayment.find(item=>item.value === doctorDetail.paymentId),
                 selectedProvince: arrProvince.find(item=>item.value === doctorDetail.provinceId),
+                selectedSpecialty: arrSpecialty.find(item=>item.value+"" === doctorDetail.specialtyId),
+                selectedClinic: arrClinic.find(item=>item.value+"" === doctorDetail.clinicId),
                 nameClicnic: doctorDetail.addressClinic,
                 addressClinic: doctorDetail.nameClinic,
                 note: doctorDetail.note,
@@ -159,6 +165,8 @@ class ManagerDoctorInfo extends Component {
                 selectedPrice: '',
                 selectedPayment: '',
                 selectedProvince: '',
+                selectedSpecialty: '',
+                selectedClinic: '',
                 nameClicnic: '',
                 addressClinic: '',
                 note: '',
@@ -176,18 +184,16 @@ class ManagerDoctorInfo extends Component {
             selectedPrice: this.state.selectedPrice.value,
             selectedPayment: this.state.selectedPayment.value,
             selectedProvince: this.state.selectedProvince.value,
+            selectedSpecialty: this.state.selectedSpecialty.value,
             nameClicnic: this.state.nameClicnic,
             addressClinic: this.state.addressClinic,
             note: this.state.note,
             action: this.state.hasOldDate? CRUD_ACTION.EDIT : CRUD_ACTION.CREATE
         })
-        console.log(this.state)
     }
     
     render() {
-
         const mdParser = new MarkdownIt(/* Markdown-it options */);
-
         return (
             <div className='manage-doctor-container px-5'>
                 <div className='manage-title my-3 text-center title'><FormattedMessage id="system.doctor.create-info-doctor" /></div>
@@ -258,6 +264,26 @@ class ManagerDoctorInfo extends Component {
                             className='form-control'
                             onChange={(e)=>this.handleChangeTextInfo(e, "addressClinic")} 
                             value={this.state.addressClinic}
+                        />
+                    </div>
+                    <div className='col col-4'>
+                        <label><FormattedMessage id="system.doctor.select-facility" /></label>
+                        <Select 
+                            name = 'selectedClinic'
+                            options={this.state.arrClinic} 
+                            value={this.state.selectedClinic}
+                            onChange={this.handleChangeSelectOption} 
+                            placeholder=''
+                        />
+                    </div>
+                    <div className='col col-4'>
+                        <label><FormattedMessage id="system.doctor.select-specialty" /></label>
+                        <Select 
+                            name = 'selectedSpecialty'
+                            options={this.state.arrSpecialty} 
+                            value={this.state.selectedSpecialty}
+                            onChange={this.handleChangeSelectOption} 
+                            placeholder=''
                         />
                     </div>
                     <div className='col col-4'>

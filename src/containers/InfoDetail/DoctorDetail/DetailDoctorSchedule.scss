@@ -1,0 +1,16 @@
+.detail-doctor-schedule{
+    padding:1rem 4rem;
+    .choose-day{
+        .day-select{
+            color: rgb(80, 130, 145);
+            cursor: pointer;
+            border-bottom: 1px solid rgb(80, 130, 145);
+            border-right: none;
+            border-top: none;
+            border-left: none;
+            outline: none;
+            font-weight: 600;
+            padding-bottom: 5px;
+        }
+    }
+}

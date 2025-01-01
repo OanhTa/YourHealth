@@ -38,7 +38,8 @@
         },
         "doctor": {
             "schedule": "Schedule",
-            "manage-schedule": "Schedule Management"
+            "manage-schedule": "Manage Doctor's Schedule",
+            "manage-booking": "Manage Doctor's Bookings"
         }
     },
     "system": {
@@ -47,6 +48,9 @@
             "select-doctor": "Select doctor",
             "intro-doctor": "Introduction",
             "select-price": "Select price",
+            "select-specialty": "Select Specialty",
+            "select-clinic": "Select Clinic",
+            "select-facility": "Select Facility",
             "select-method-pay": "Select method payment",
             "select-province": "Select province",
             "name-clinic": "Clinic name",
@@ -78,12 +82,45 @@
         "save-schedule": "Save information"
     },
     "homepage": {
+        "speciality": "Popular specialties",
+        "clinic": "Medical facilitys",
         "out-standing-doctor": "Lastweek featured doctor",
         "more": "More Info"
     },
     "section-doctor": {
         "schedule": "Schedule",
         "message": "There are no appointments scheduled for this day. Please choose another day!",
-        "book-free": "Choose and book free "
+        "book-free": "Choose and book free ",
+        "address-clinic": "Clinic Address",
+        "price": "Consultation Price ",
+        "note-1": "Priority consultation available when scheduling here",
+        "note-2": "Payment method: ",
+        "show": " View Details",
+        "hide": "Hide Price Table"
+    },
+    "patient-booking-model": {
+        "title": "Appointment Information",
+        "title-1": "Contact Information:",
+        "email": "Enter your email address",
+        "name": "Enter your full name",
+        "date": "Enter your date of birth",
+        "gender": "Gender",
+        "phone": "Enter your phone number",
+        "reason": "Reason for booking an appointment",
+        "add": "Enter your contact address",
+        "send": "Send",
+        "cancel": "Cancel"
+    },
+    "verify-booking-model": {
+        "title": {
+            "success": "Booking Confirmed",
+            "failure": "Verification Failed",
+            "loading": "Verifying Your Booking..."
+        },
+        "message": {
+            "success": "Your booking has been successfully verified. Thank you for choosing our service!",
+            "failure": "We couldn't verify your booking. Please try again or contact support.",
+            "loading": "Please wait while we process your request."
+        }
     }
 }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import {Button, Modal ,ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import './UserManage.scss';
-import { emitter } from '../../../utils/emitter'; 
 import _ from 'lodash';
 
 
@@ -86,9 +84,8 @@ class ModalEditUser extends Component {
                     centered           
             >
                 <ModalHeader toggle={()=>{this.toggle()}} charCode="X">Edit user</ModalHeader>
-                    <ModalBody>
-                        
-                    <div className="container">
+                    <ModalBody>                    
+                        <div className="container">
                             <div className="form-row">
                                 <div className="form-group col-6">
                                     <label >Email</label>
@@ -191,8 +188,7 @@ class ModalEditUser extends Component {
                                     </select>
                                 </div>
                             </div>
-                    </div>
-
+                        </div>
                     </ModalBody>
                     <ModalFooter>
                         <Button className='px-2'

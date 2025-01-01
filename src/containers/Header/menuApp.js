@@ -58,6 +58,9 @@ export const doctorMenu = [
         menus: [
             {
                 name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule',
+            },
+            {
+                name: 'menu.doctor.manage-booking', link: '/doctor/manage-booking',
             }
         ]
     },

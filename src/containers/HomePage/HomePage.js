@@ -8,6 +8,8 @@ import './HomePage.scss';
 //import css file Slider
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import HomeFootage from './HomeFootage';
+import Clinic from './Section/Clinic';
 
 class HomePage extends Component {
 
@@ -24,7 +26,9 @@ class HomePage extends Component {
             <div>
                 <HomeHeader isshowBanner={true}/>
                 <Specialty settings = {settings}/>
+                <Clinic settings = {settings}/>
                 <Doctor settings = {settings}/>
+                <HomeFootage />
             </div>
         );
     }

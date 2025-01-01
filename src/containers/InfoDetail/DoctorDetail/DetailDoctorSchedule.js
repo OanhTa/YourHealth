@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './DetailDoctor.scss'
 import moment from 'moment'
-import localization from 'moment/locale/vi'
 import { LANGUAGES } from '../../../utils';
 import { getScheduleByDateServie } from '../../../services/userService';
 import { FormattedMessage } from 'react-intl';
+import BookingModel from './Model/BookingModel';
+import './DetailDoctorSchedule.scss'
 
 class DetailDoctorSchedule extends Component {
     constructor(props) {
         super(props);
         this.state = {
             allDays: [],
-            allSchedule: []
+            allSchedule: [],
+            selectedDay: '',
+            selectedSchedule: '',
+            isOpenModelBooking: false,
         }
     }
     capitalizeFirstLetter = (string)=> {
@@ -44,11 +48,18 @@ class DetailDoctorSchedule extends Component {
         return dateArr 
 
     }
-    componentDidMount = ()=> {
+    componentDidMount = async()=> {
         let arrDate = this.createInputDate();
         if(arrDate && arrDate.length > 0){
             this.setState({
                 allDays: arrDate
+            })
+        }
+        if(this.props.doctorIdByParent && this.state.allDays[0]){
+            let res = await getScheduleByDateServie(this.props.doctorIdByParent, this.state.allDays[0].value)
+          
+            this.setState({
+                allSchedule: res ? res.data : []
             })
         }
     }
@@ -71,23 +82,35 @@ class DetailDoctorSchedule extends Component {
     handleOnChangeSelect = async(e)=>{
         let doctorId = this.props.doctorIdByParent;
         let date = e.target.value;
-
+        let selectedDay = this.state.allDays.find(day => day.value === +date);
+        
         let res = await getScheduleByDateServie(doctorId, date)
         this.setState({
-             allSchedule: res.data || [  ]
+             allSchedule: res.data || [  ],
+             selectedDay: selectedDay && selectedDay.lable
         }) 
+    }
+    handleOpenModelSchedule = (item)=>{
+        this.setState({
+            isOpenModelBooking: true,
+            selectedSchedule: item
+        })
+    }
+    handleCloseModelSchedule = ()=>{
+        this.setState({
+            isOpenModelBooking: false
+        })
     }
     render() {
         let {allDays, allSchedule}= this.state
         let {language }= this.props
-        console.log(this.state.allSchedule)
-
         return (
-                <div>
+            <>
+                <div className='detail-doctor-schedule'>
                     <div className='choose-day'>
                         <select 
                             class="day-select"
-                            onChange={(e)=>this.handleOnChangeSelect(e)}>
+                            onChange={this.handleOnChangeSelect}>
                             {allDays && allDays.length>0 && allDays.map((day, index)=>{
                                 return(                               
                                     <option key={index} value={day.value}>{day.lable}</option>
@@ -108,6 +131,7 @@ class DetailDoctorSchedule extends Component {
                                             className='btn m-2 btn-warning hsla(217, 89%, 51%, 0.5)'
                                             style={{ minWidth: '160px'}}
                                             key={index}
+                                            onClick={()=>this.handleOpenModelSchedule(item)}
                                         >
                                             {language === LANGUAGES.EN 
                                                 ? item.timeTypeData.valueEn 
@@ -127,7 +151,14 @@ class DetailDoctorSchedule extends Component {
                         )}
                     </div>            
                 </div>
-
+                <BookingModel 
+                    isOpen={this.state.isOpenModelBooking} 
+                    selectedDay={this.state.selectedDay}
+                    selectedSchedule={this.state.selectedSchedule}
+                    closeModel={this.handleCloseModelSchedule}
+                    detailDoctor={this.props.detailDoctor}
+                />
+            </>
         );
     }
 

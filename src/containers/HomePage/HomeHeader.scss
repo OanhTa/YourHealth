@@ -5,7 +5,7 @@
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 10000;
+    z-index: 100;
 
     .home-header-content {
         width: 100%;
@@ -101,11 +101,11 @@
 }
 
 .home-header-banner {
-    background: url("../../assets/header-background.jpg");
-    height: 800px;
+    background: url("../../assets/back2.jpg");
+    height: 680px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: top;
     display: flex;
     flex-direction: column;
 

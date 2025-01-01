@@ -6,6 +6,8 @@ import { getInfoDetailDoctorServie } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DetailDoctorSchedule from './DetailDoctorSchedule';
 import DetailExtraInfoDoctor from './DetailExtraInfoDoctor';
+import ProfileDoctor from './ProfileDoctor';
+import HomeFootage from '../../HomePage/HomeFootage';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -36,39 +38,18 @@ class DetailDoctor extends Component {
     }
 
     render() {
-        
-        let {detailDoctor} = this.state;
-        let nameVI,nameEN
-        if(detailDoctor && detailDoctor.positionData){
-            nameVI = `${detailDoctor.positionData.valueVi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
-            nameEN = `${detailDoctor.positionData.valueEn}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
-        }
-        let language = this.props.language;
-        
+        let {detailDoctor, doctorId} = this.state;   
         return (
             <div>
                 <HomeHeader isshowBanner={false}/>
                 <div className='doctor-detail-container'>
-                    <div className='doctor-info row'>
-                        <div className='col col-2'>
-                            <div className='image'
-                                 style={{backgroundImage: `url(${detailDoctor.image ? detailDoctor.image:""})`}}>
-                            </div>
-                        </div>
-                        <div className='col col-10'>
-                            <div className='up'>{language === LANGUAGES.VI ? nameVI : nameEN}</div>
-                            <div className='down'>
-                                {detailDoctor.Markdown && detailDoctor.Markdown.description &&
-                                    <span>
-                                        {detailDoctor.Markdown.description}
-                                    </span>
-                                }
-                                </div>
-                        </div>
-                    </div>
+                    <ProfileDoctor doctorIdByParent = {doctorId} isShowDes={true}/>
                     <div className='doctor-schedule row'>
                         <div className='col col-6 col-left'>
-                            <DetailDoctorSchedule doctorIdByParent={this.state.doctorId}/>
+                            <DetailDoctorSchedule 
+                                doctorIdByParent={this.state.doctorId} 
+                                detailDoctor = {detailDoctor}
+                            />
                         </div>
                         <div className='col col-6'>
                             <DetailExtraInfoDoctor doctorIdByParent={this.state.doctorId}/>
@@ -83,6 +64,7 @@ class DetailDoctor extends Component {
 
                     </div>
                 </div>
+                <HomeFootage />
             </div>
         );
     }

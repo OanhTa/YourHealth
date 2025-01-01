@@ -45,23 +45,53 @@ const saveInfoDoctorServie = (data) => {
 const getInfoDetailDoctorServie = (id) => {
     return axios.get(`/api/get-infor-doctor?id=${id}`);
 }
+const getExtraInfoDoctorServie = (id) => {
+    return axios.get(`/api/get-extra-infor-doctorById?id=${id}`);
+}
 const saveBulkScheduleServie = (data) => {
     return axios.post(`/api/bulk-create-schedule`, data);
 }
 const getScheduleByDateServie = (doctorId, date) => {
     return axios.get(`/api/get-all-schedule?doctorId=${doctorId}&date=${date}`);
 }
+const getProfileDoctorServie = (id) => {
+    return axios.get(`/api/get-profile-doctorById?id=${id}`);
+}
+const postPatientBookingAppoinment = (data) => {
+    return axios.post("/api/patient-book-appointment", data);
+}
+const postVerifyBookingAppoinment = (data) => {
+    return axios.post(`/api/verify-book-appointment`, data);
+}
+const createNewSpecialty = (data) => {
+    return axios.post(`/api/create-new-specialty`, data);
+}
+const getAllSpecialtyServie = () => {
+    return axios.get(`/api/get-all-specialty`);
+}
+const getSpecialtyByIdServie = (data) => {
+    return axios.get(`/api/get-specialty-id?id=${data.id}&province=${data.province}`);
+}
+const createNewClinic = (data) => {
+    return axios.post(`/api/create-new-clinic`, data);
+}
+const getAllClinicServie = () => {
+    return axios.get(`/api/get-all-clinic`);
+}
+const getClinicByIdServie = (id) => {
+    return axios.get(`/api/get-clinic-id?id=${id}`);
+}
 export {
     handleLoginAPI,
-    getAllUser,
-    CreateNewUserServiceAPI,
-    DeleteUserServiceAPI,
-    EditUserServiceAPI,
+    getAllUser, CreateNewUserServiceAPI, DeleteUserServiceAPI, EditUserServiceAPI,
     getAllCodeService,
-    getTopDoctorHomeServiceAPI,
-    getAllDoctorService,
-    saveInfoDoctorServie,
-    getInfoDetailDoctorServie,
-    saveBulkScheduleServie,
-    getScheduleByDateServie
+    getTopDoctorHomeServiceAPI, getAllDoctorService,
+    saveInfoDoctorServie, getInfoDetailDoctorServie,
+    saveBulkScheduleServie, getScheduleByDateServie,
+    getExtraInfoDoctorServie,
+    getProfileDoctorServie,
+    postPatientBookingAppoinment,
+    postVerifyBookingAppoinment,
+    createNewSpecialty, getAllSpecialtyServie, getSpecialtyByIdServie,
+    createNewClinic, getAllClinicServie, getClinicByIdServie
 }

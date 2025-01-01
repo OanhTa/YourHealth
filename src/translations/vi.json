@@ -38,7 +38,8 @@
         },
         "doctor": {
             "schedule": "Lịch khám",
-            "manage-schedule": "Quản lý đặt lịch khám"
+            "manage-schedule": "Quản lý lịch khám",
+            "manage-booking": "Quản lý đặt khám"
         }
     },
     "system": {
@@ -47,6 +48,9 @@
             "select-doctor": "Chọn bác sĩ",
             "intro-doctor": "Thông tin giới thiệu",
             "select-price": "Chọn giá",
+            "select-specialty": "Chọn chuyên khoa",
+            "select-facility": "Chọn cơ sở",
+            "select-clinic": "Chọn phòng khám",
             "select-method-pay": "Chọn phương thức thanh toán",
             "select-province": "Chọn tỉnh thành",
             "name-clinic": "Tên phòng khám",
@@ -79,11 +83,44 @@
     },
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
+        "speciality": "Chuyên khoa phổ biến",
+        "clinic": "Cơ sở y tế",
         "more": "Xem thêm"
     },
     "section-doctor": {
         "schedule": "Lịch khám",
         "message": "Không có lịch khám trong ngày này. Vui lòng lựa chọn ngày khác!",
-        "book-free": "Chọn và đặt lịch miễn phí "
+        "book-free": "Chọn và đặt lịch miễn phí ",
+        "address-clinic": "Địa chỉ phòng khám",
+        "price": "Giá khám ",
+        "note-1": "Được ưu tiên khám trước khi đặt lịch hẹn tại đây",
+        "note-2": "Thanh toán bằng phương thức: ",
+        "show": " Xem chi tiết",
+        "hide": "Ẩn bảng giá"
+    },
+    "patient-booking-model": {
+        "title": "Thông tin đặt lịch khám",
+        "title-1": "Thông tin liên hệ:",
+        "email": "Nhập địa chỉ email",
+        "name": "Nhập đầy đủ họ và tên",
+        "date": "Nhập ngày sinh",
+        "gender": "Giới tính",
+        "phone": "Nhập số điện thoại",
+        "reason": "Lý do đặt lịch khám",
+        "add": "Nhập địa chỉ liên lạc",
+        "send": "Gửi",
+        "cancel": "Hủy"
+    },
+    "verify-booking-model": {
+        "title": {
+            "success": "Xác nhận đặt lịch thành công",
+            "failure": "Xác nhận thất bại",
+            "loading": "Đang xác nhận lịch hẹn của bạn..."
+        },
+        "message": {
+            "success": "Lịch hẹn của bạn đã được xác nhận thành công. Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!",
+            "failure": "Chúng tôi không thể xác nhận lịch hẹn của bạn. Vui lòng thử lại hoặc liên hệ với bộ phận hỗ trợ.",
+            "loading": "Vui lòng chờ trong khi chúng tôi xử lý yêu cầu của bạn."
+        }
     }
 }

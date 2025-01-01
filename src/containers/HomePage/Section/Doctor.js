@@ -56,16 +56,16 @@ class Doctor extends Component {
                                     let nameVI = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
                                     let nameEN = `${item.positionData.valueEn}, ${item.lastName} ${item.firstName}`;
                                     return(
-                                        <div className='section-customize' key={index} onClick={()=>{this.hadeleViewDetailDoctor(item)}}>
+                                       <div className='section-customize' key={index} onClick={()=>{this.hadeleViewDetailDoctor(item)}}>
                                             <div className='outer-bg'>
-                                                <div className='bg-image section-doctor'
+                                                 <div className='bg-image section-doctor'
                                                     style={{backgroundImage: `url(${imageBase64})`}}
                                                 >
                                                 </div>
-                                            </div>
-                                            <div className='position text-center'>
-                                                <div className='sub-title'>{language === LANGUAGES.VI ? nameVI : nameEN}</div>
-                                                <div className='sub-title'>Cơ xương khớp</div>
+                                                <div className='position text-center'>
+                                                    <div className='sub-title'>{language === LANGUAGES.VI ? nameVI : nameEN}</div>
+                                                    <div className='sub-title'>Cơ xương khớp</div>
+                                                </div>
                                             </div>
                                         </div> 
                                     )

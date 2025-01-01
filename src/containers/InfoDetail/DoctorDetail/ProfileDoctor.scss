@@ -1,0 +1,24 @@
+.doctor-profile-container{
+    margin-top: 28px;
+    .profile-info{
+        margin-left: 2%;
+        .image { 
+            min-width: 6rem;   
+            width: 72%;               /* Đặt chiều rộng đầy đủ cho khung ảnh */
+            aspect-ratio: 1 / 1;       /* Đặt tỷ lệ khung hình 1:1 để luôn là hình tròn */
+            border-radius: 50%;        /* Tạo bo tròn 50% để thành hình tròn */
+            overflow: hidden;          
+            background-size: cover;    /* Đảm bảo hình ảnh phủ toàn bộ phần tử */
+            background-position: center; 
+            background-repeat: no-repeat; 
+        }        
+        .up{
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        .down{
+            margin-top: 1rem;
+            width: 600px;
+        }
+    }
+}

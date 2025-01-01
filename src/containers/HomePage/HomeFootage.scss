@@ -1,0 +1,51 @@
+.home-footage-footer {
+    background-color: #f8f9fa; /* Màu xám nhạt */
+    color: #333;
+    border: 1px #d8d7d7 solid;
+    font-size: 14px;
+
+    h5 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    p, li {
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .contact-info, .branch-office, .download-app {
+        margin: 8px 0;
+    }
+
+    .app-links {
+        padding: 0;
+        list-style: none;
+
+        li {
+            display: inline;
+            margin-right: 10px;
+
+            a {
+                text-decoration: none;
+                color: #007bff;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .footer-end {
+        color: #ffffff;
+        background-color: #3fadd1;
+        font-size: 12px;
+    }
+
+    .ministry ul {
+        padding-left: 20px;
+        list-style: disc;
+    }
+}
