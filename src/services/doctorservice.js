@@ -55,7 +55,8 @@ let saveInfoDoctorService = async(data)=>{
     return new Promise(async(resolve, reject) =>{
         try {
             if(!data.doctorId || !data.contentHTML || !data.contentMarkdown || !data.action
-                ||!data.selectedPrice || !data.selectedProvince || !data.selectedPayment || !data.addressClinic || !data.nameClicnic
+                ||!data.selectedPrice || !data.selectedProvince || !data.selectedPayment 
+                || !data.addressClinic || !data.nameClicnic || !data.selectedSpecialty
             ){
                 resolve({
                     errCode: 1,
@@ -97,6 +98,7 @@ let saveInfoDoctorService = async(data)=>{
                     doctor_detail.priceId = data.selectedPrice,
                     doctor_detail.provinceId = data.selectedProvince,
                     doctor_detail.paymentId =  data.selectedPayment,
+                    doctor_detail.specialtyId =  data.selectedSpecialty,
                     doctor_detail.addressClinic =  data.addressClinic,
                     doctor_detail.nameClinic =  data.nameClicnic,
                     doctor_detail.note =  data.note,
@@ -106,6 +108,7 @@ let saveInfoDoctorService = async(data)=>{
                         doctorId: data.doctorId,
                         priceId: data.selectedPrice,
                         provinceId: data.selectedProvince,
+                        specialtyId: data.selectedSpecialty,
                         paymentId: data.selectedPayment,
                         addressClinic: data.addressClinic,
                         nameClinic: data.nameClicnic,
@@ -157,6 +160,7 @@ let getInfoDoctorService =(id)=>{
                             { model: db.Allcode, as: 'priceData', attributes: ['valueEn', 'valueVi']},
                             { model: db.Allcode, as: 'provinceData', attributes: ['valueEn', 'valueVi']},
                             { model: db.Allcode, as: 'paymentData', attributes: ['valueEn', 'valueVi']},
+                            { model: db.Specialty, as: 'specialtyData'},
                         ]
                     },             
                 ],
@@ -249,11 +253,71 @@ let getAllScheduleService = (doctorId, date)=>{
         }
     })
 }
+let getExtraInfoDoctorByIdService =(doctorId)=>{
+    return new Promise(async(resolve, reject) =>{
+        try {
+            if(!doctorId){
+                resolve({
+                    errCode: 1,
+                    message:"Missing paramenter"
+                })
+            }
+            let doctor = await db.DoctorInfo.findOne({
+                where: {doctorId},
+                attributes: {
+                    exclude: ['id', 'doctorId']
+                },
+                include:[
+                    { model: db.Allcode, as: 'priceData', attributes: ['valueEn', 'valueVi']},
+                    { model: db.Allcode, as: 'provinceData', attributes: ['valueEn', 'valueVi']},
+                    { model: db.Allcode, as: 'paymentData', attributes: ['valueEn', 'valueVi']},
+                ],
+                raw: false,
+                nest: true
+            });
+            console.log(doctorId)
+            resolve({
+                errCode: 0,
+                data: doctor ? doctor: {}
+            })
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+let getListPatientByDoctorService =(doctorId, date)=>{
+    return new Promise(async(resolve, reject) =>{
+        try {
+            if(!doctorId && !date){
+                resolve({
+                    errCode: 1,
+                    message:"Missing paramenter"
+                })
+            }
+            let data = await db.Booking.findAll({
+                where: {
+                    statusId: 'S2',
+                    doctorId,
+                    date
+                }
+            })
+            resolve({
+                errCode: 0,
+                data
+            })
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
 module.exports = {
     getTopDoctorHome,
     getAllDoctor,
     saveInfoDoctorService,
     getInfoDoctorService,
     bulkCreateScheduleService,
-    getAllScheduleService
+    getAllScheduleService,
+    getExtraInfoDoctorByIdService,
+    getListPatientByDoctorService
 }

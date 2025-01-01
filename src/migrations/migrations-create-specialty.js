@@ -9,20 +9,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      currentNumber: {
-        type: Sequelize.STRING
-      },
-      maxNumber: {
-        type: Sequelize.STRING
-      },
       name: {
         type: Sequelize.STRING
       },
-      timeType: {
+      descriptionHTML: {
         type: Sequelize.STRING
       },
-      doctorId: {
+      descriptionMarkdown: {
         type: Sequelize.STRING
+      },
+      image: {
+        type: Sequelize.BLOB('long')
       },
       createdAt: {
         allowNull: false,

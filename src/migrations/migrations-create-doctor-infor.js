@@ -15,6 +15,12 @@ module.exports = {
       priceId: {
         type: Sequelize.STRING
       },
+      specialtyId: {
+        type: Sequelize.STRING
+      },
+      clinicId: {
+        type: Sequelize.STRING
+      },
       provinceId: {
         type: Sequelize.STRING
       },
