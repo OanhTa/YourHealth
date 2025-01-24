@@ -76,6 +76,77 @@ let getBodyHTMLEmail = (data)=>{
   return result
 }
 
+let sendPrescriptionEmail = async (data) => {
+  return new Promise(async(resolve, reject) =>{
+    try {
+      let transporter = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 587,
+          secure: false, // true for port 465, false for other ports
+          auth: {
+              user: process.env.EMAIL,
+              pass: process.env.MAIL_PASS,
+          },
+      });
+    
+      await transporter.sendMail({
+          from: 'Hỗ trợ khách hàng <helpIT12@gmail.com>',
+          to: data.email,
+          subject: "Đơn thuốc và dặn dò sau khám", // Subject of the email
+          text: "Thông tin đơn thuốc sau khám bệnh", // Fallback text
+          html: getBodydPrescriptionEmail(data), // Email body in HTML format
+          attachments: [
+              {
+                  filename: `${data.patientName}-${new Date().getTime()}.png`,// Name of the attachment
+                  content: data.imgBase64.split("base64,")[1],
+                  encoding: 'base64'
+              }
+          ],
+      });
+      resolve("Email sent successfully");
+    } catch (error) {
+        reject(error)
+    }
+  })
+};
+
+let getBodydPrescriptionEmail = (data) => {
+  let result = "";
+  if (data.language === "vi") {
+      result = `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+              <h2 style="color: #2c3e50;">Xin chào, ${data.patientName}!</h2>
+              <p style="margin: 10px 0;">
+                  Chúng tôi gửi bạn đơn thuốc và dặn dò sau khi khám tại <b style="color: #e74c3c;">HealthyYour</b>.
+              </p>
+            
+              <p style="margin: 20px 0;">
+                  Vui lòng kiểm tra đơn thuốc đính kèm.
+              </p>
+              <p style="margin-top: 20px;">Xin chân thành cảm ơn,</p>
+              <p style="font-style: italic; color: #7f8c8d;">Đội ngũ HealthyYour</p>
+          </div>
+      `;
+  }
+  if (data.language === "en") {
+      result = `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+              <h2 style="color: #2c3e50;">Hello, ${data.patientName}!</h2>
+              <p style="margin: 10px 0;">
+                  We are sending you the prescription and instructions after your visit at <b style="color: #e74c3c;">HealthyYour</b>.
+              </p>
+              <p style="margin: 20px 0;">
+                  Please check the attached prescription.
+              </p>
+              <p style="margin-top: 20px;">Thank you very much,</p>
+              <p style="font-style: italic; color: #7f8c8d;">HealthyYour Team</p>
+          </div>
+      `;
+  }
+  return result;
+};
+
 module.exports = {
-    simpleSendEmail
+    simpleSendEmail,
+    sendPrescriptionEmail
 }

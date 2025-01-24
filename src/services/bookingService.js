@@ -13,14 +13,14 @@ let buildUrlEmail = (token, doctorId)=>{
 let patientBookingService = (data)=>{
     return new Promise(async(resolve, reject)=>{
         try {
-            if(!data.email && !data.doctorId && !data.timeType){
+            if(!data.email && !data.doctorId && !data.timeType && !data.phonenumber && !data.fullName){
                 resolve({
                     errCode: 1,
                     message: 'Missing paramerter'
                 })
             }
             let formattedDate = data.language === "vi" ? 
-                moment(data.selectedDate).format("DD/MM/YYYY"): moment(data.selectedDate).format("MM/DD/YYYY"); 
+                moment(data.dateTime).format("DD/MM/YYYY"): moment(data.dateTime).format("MM/DD/YYYY"); 
             let token = uuidv4()
             await emailService.simpleSendEmail({
                 receiverEmail: data.email,
@@ -34,7 +34,11 @@ let patientBookingService = (data)=>{
             let user = await db.User.findOrCreate({
                 where: {email: data.email},
                 defaults: {
+                    firstName: data.fullName,
                     email: data.email,
+                    address: data.address,
+                    phonenumber: data.phonenumber,
+                    gender: data.selectedGender.value,
                     roleId: 'R3'
                 }
             })
@@ -43,14 +47,14 @@ let patientBookingService = (data)=>{
                 await db.Booking.findOrCreate({
                     where: {
                         patientid: user[0].id,
-                        date: data.selectedDate,
-                        timeType: new Date(data.selectedDate).getTime(),
+                        date: data.dateTime,
+                        timeType: new Date(data.dateTime).getTime(),
                     },
                     defaults: {
                         statusId: "S1",
                         doctorId: data.doctorId,
                         patientid: user[0].id,
-                        date: new Date(data.selectedDate).getTime(),
+                        date: new Date(data.dateTime).getTime(),
                         token: token,
                         timeType: data.timeType,
                     }

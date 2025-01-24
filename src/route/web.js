@@ -30,7 +30,9 @@ let initWebRoutes = ( app)=>{
     app.post("/api/bulk-create-schedule", doctorController.bulkCreateSchedule)
     app.get("/api/get-all-schedule", doctorController.getAllSchedule)
     app.get("/api/get-extra-infor-doctorById", doctorController.getExtraInfoDoctorById)
+    
     app.get("/api/get-list-patient-ByDoctor", doctorController.getListPatientByDoctor)
+    app.post("/api/sendBill", doctorController.postSendBill)
     
     app.post("/api/patient-book-appointment", patientController.patientBookingAppointment)
     app.post("/api/verify-book-appointment", patientController.verifyBookingAppointment)

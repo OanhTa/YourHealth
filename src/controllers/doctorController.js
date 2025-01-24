@@ -91,17 +91,38 @@ let getExtraInfoDoctorById = async(req, res)=>{
 
 let getListPatientByDoctor = async(req, res)=>{
     try {
-        let list = await doctorservice.getListPatientByDoctorService(req.query.doctorId, req.query.date)
+        const doctorId = Number(req.query.doctorId);
+        const date = req.query.date;
+
+        if (!doctorId || !date) {
+            return res.status(200).json({
+                errCode: 1,
+                message: "Missing parameter",
+            });
+        }
+        let list = await doctorservice.getListPatientByDoctorService(doctorId, date)
         res.status(200).json(list)
 
     } catch (error) {
         res.status(200).json({
             errCode: -1,
-            message: "Error From Server"
+            message: `Error From Server: ${error.message}`,
         })
     }
 }
 
+let postSendBill = async(req, res)=>{
+    try {
+        let result = await doctorservice.postSendBillService(req.body)
+        res.status(200).json(result)
+
+    } catch (error) {
+        res.status(200).json({
+            errCode: -1,
+            message: "Error From Server " + error
+        })
+    }
+}
 module.exports = {
     getTopDoctorHome,
     getAllDoctor,
@@ -110,5 +131,6 @@ module.exports = {
     bulkCreateSchedule,
     getAllSchedule,
     getExtraInfoDoctorById,
-    getListPatientByDoctor
+    getListPatientByDoctor,
+    postSendBill
 }

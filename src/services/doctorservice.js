@@ -1,4 +1,4 @@
-
+import emailService from "./emailService"
 import db from '../models';
 import _ from 'lodash';
 require("dotenv").config();
@@ -275,7 +275,6 @@ let getExtraInfoDoctorByIdService =(doctorId)=>{
                 raw: false,
                 nest: true
             });
-            console.log(doctorId)
             resolve({
                 errCode: 0,
                 data: doctor ? doctor: {}
@@ -289,22 +288,77 @@ let getExtraInfoDoctorByIdService =(doctorId)=>{
 let getListPatientByDoctorService =(doctorId, date)=>{
     return new Promise(async(resolve, reject) =>{
         try {
-            if(!doctorId && !date){
+            const data = await db.Booking.findAll({
+                where: {
+                    statusId: 'S2',
+                    doctorId,
+                    date,
+                },
+                include: [
+                    {
+                        model: db.User,
+                        as: "patientData",
+                        attributes: ["firstName", "email", "address", "phonenumber", "gender"],
+                        include:[
+                            { model: db.Allcode, as: 'genderData', attributes: ['valueEn', 'valueVi']},
+                        ]
+                    },
+                    {
+                        model: db.Allcode, as: "timeTypeB", attributes: ['valueEn', 'valueVi']
+                    }
+                ],
+                raw: true,// sử dụng dạng plain object 
+                nest: true //để tổ chức dữ liệu quan hệ
+            });
+            
+            if (data.length === 0) {
+                resolve({
+                    errCode: 2,
+                    message: "No patients found for the given doctor and date",
+                });
+            } else {
+                resolve({
+                    errCode: 0,
+                    data, 
+                });
+            }
+
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+let postSendBillService = (data)=>{   
+    return new Promise(async(resolve, reject) =>{
+        try {
+            if(!data.email || !data.imgBase64 || !data.doctorId || !data.patientid || !data.timeType){
                 resolve({
                     errCode: 1,
                     message:"Missing paramenter"
                 })
             }
-            let data = await db.Booking.findAll({
+            let appointment = await db.Booking.findOne({
                 where: {
+                    doctorId: data.doctorId,
+                    patientid: data.patientid,
+                    timeType: data.timeType,
                     statusId: 'S2',
-                    doctorId,
-                    date
-                }
+                },
+                raw: false
             })
+            if(appointment){
+                appointment.statusId = 'S3'
+                await appointment.save()
+                await emailService.sendPrescriptionEmail({
+                    email: data.email,
+                    imgBase64: data.imgBase64,
+                    patientName: data.patientName,
+                    language: data.language,
+                })
+            }
             resolve({
                 errCode: 0,
-                data
+                data: appointment
             })
         } catch (error) {
             reject(error)
@@ -319,5 +373,6 @@ module.exports = {
     bulkCreateScheduleService,
     getAllScheduleService,
     getExtraInfoDoctorByIdService,
-    getListPatientByDoctorService
+    getListPatientByDoctorService,
+    postSendBillService
 }

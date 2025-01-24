@@ -25,7 +25,7 @@ let handleUserLogin = async(email, pass)=>{
             
             var user = await db.User.findOne({ 
                 where: { email: email },
-                attributes: ['email','roleId','password','firstName', 'lastName'],
+                attributes: ['email','roleId','password','firstName', 'lastName', 'id'],
             });
             //Ktra email có tồn tại khong
             if(user){
