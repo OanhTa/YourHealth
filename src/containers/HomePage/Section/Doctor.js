@@ -39,7 +39,7 @@ class Doctor extends Component {
         let language = this.props.language;
 
         return (
-            <div className='section-share section-doctor'>
+            <div className='section-share section-doctor' id='section-doctor'>
                 <div className='section-container'>
                     <div className='section-header'>
                         <span className='title-section'><FormattedMessage id="homepage.out-standing-doctor"/></span>

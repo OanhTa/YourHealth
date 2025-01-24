@@ -9,7 +9,12 @@ import { withRouter } from 'react-router';
 
 
 class HomeHeader extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpenMenu: false
+        }
+    }
     changeLanguage = (language) => {
         //fire redux event: folder >>> actions
         // this.props.dispatch(changeLanguageApp(languge))
@@ -19,35 +24,60 @@ class HomeHeader extends Component {
     returntoHome = ()=>{
         this.props.history.push(`/home`);
     }
-
+    toggleMenu = () => {
+        this.setState({
+            isOpenMenu: !this.state.isOpenMenu
+        })
+        alert('click')
+    };
     render() {
-
+        let isOpenMenu = this.state.isOpenMenu
         let language = this.props.language; //lay tu redux ra
-
         return (
             <React.Fragment>
             <div className='home-header-container'>
                 <div className='home-header-content'>
                     <div className='left-content'>
-                        <i class="fas fa-bars"></i>
-                        <div className='header-logo' onClick={this.returntoHome}></div>
+                        <span className='icon-bars' onClick={this.toggleMenu}>
+                            <i class="fas fa-bars"></i>
+                        </span>
+                        {/* Menu thả xuống */}
+                        {isOpenMenu && (
+                            <ul className="dropdown-menu">
+                                <li>Option 1</li>
+                                <li>Option 2</li>
+                                <li>Option 3</li>
+                            </ul>
+                        )}
+                        <div className='header-logo' onClick={this.returntoHome}>
+                            <i class="fa fa-medkit" aria-hidden="true"></i>
+                            YourHealth
+                        </div>
                     </div>
-                    <div className='center-content'>
-                        <div className='child-content'>
-                            <div><b> <FormattedMessage id="home-header.speciality"/></b></div>
-                            <div className='subs-title'><FormattedMessage id="home-header.searchdoctor"/></div>
+                    <div className="center-content">
+                        <div className="child-content">
+                            <a href="#section-speciality">
+                                <div><b><FormattedMessage id="home-header.speciality" /></b></div>
+                                <div className="subs-title"><FormattedMessage id="home-header.searchdoctor" /></div>
+                            </a>
                         </div>
-                        <div className='child-content'>
-                            <div><b><FormattedMessage id="home-header.health-facility"/></b></div>
-                            <div className='subs-title'><FormattedMessage id="home-header.select-room"/></div>
+                        <div className="child-content">
+                            <a href="#section-clinic">
+                                <div><b><FormattedMessage id="home-header.health-facility" /></b></div>
+                                <div className="subs-title"><FormattedMessage id="home-header.select-room" /></div>
+                            </a>
                         </div>
-                        <div className='child-content'>
-                            <div><b><FormattedMessage id="home-header.doctor"/></b></div>
-                            <div className='subs-title'><FormattedMessage id="home-header.select-doctor"/></div>
+                        <div className="child-content">
+                            <a href="#section-doctor">
+                                <div><b><FormattedMessage id="home-header.doctor" /></b></div>
+                                <div className="subs-title"><FormattedMessage id="home-header.select-doctor" /></div>
+                            </a>
                         </div>
-                        <div className='child-content'>
-                            <div><b><FormattedMessage id="home-header.fee"/></b></div>
-                            <div className='subs-title'><FormattedMessage id="home-header.check-health"/></div>
+                        <div className="child-content">
+                            <a href="#section-fee">
+                                <div><b><FormattedMessage id="home-header.fee" /></b></div>
+                                <div className="subs-title"><FormattedMessage id="home-header.check-health" /></div>
+                            </a>
                         </div>
                     </div>
                     <div className='right-content'>

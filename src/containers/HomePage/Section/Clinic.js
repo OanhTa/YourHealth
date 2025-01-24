@@ -29,7 +29,7 @@ class Clinic extends Component {
     render() {
         let {allSpecial } = this.state
         return (
-            <div className='section-share section-clinic'>
+            <div className='section-share section-clinic' id='section-clinic'>
                 <div className='section-container'>
                     <div className='section-header'>
                         <span className='title-section'><FormattedMessage id="homepage.clinic"/></span>

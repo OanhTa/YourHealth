@@ -62,27 +62,33 @@ class DetailClinic extends Component {
                     }
                 </div>
                
-                {
-                    arrDoctor.map((doctor, index)=>{
-                        return (
-                            <div className='clinic-item row' key={index}>
-                                <div className='col col-6 col-left'>
-                                    <ProfileDoctor doctorIdByParent = {doctor.doctorId} isShowDes={true}/>
-                                    <p className='showDetail'>
-                                        <Link to={`/doctor-info/${doctor.doctorId}`}>Xem thêm</Link>
-                                    </p>
+                <div>
+                    {arrDoctor && arrDoctor.length > 0 ? (
+                        arrDoctor.map((doctor, index) => {
+                            return (
+                                <div className='clinic-item row' key={index}>
+                                    <div className='col-12 col-md-12 col-lg-6 col-left'>
+                                        <ProfileDoctor doctorIdByParent={doctor.doctorId} isShowDes={true} />
+                                        <p className='showDetail'>
+                                            <Link to={`/doctor-info/${doctor.doctorId}`}>Xem thêm</Link>
+                                        </p>
+                                    </div>
+                                    <div className='col-12 col-md-12 col-lg-6 col-right'>
+                                        <DetailDoctorSchedule
+                                            doctorIdByParent={doctor.doctorId}
+                                            detailDoctor={detailDoctor}
+                                        />
+                                        <DetailExtraInfoDoctor doctorIdByParent={doctor.doctorId} />
+                                    </div>
                                 </div>
-                                <div className='col col-6 col-right'>
-                                    <DetailDoctorSchedule 
-                                        doctorIdByParent={doctor.doctorId} 
-                                        detailDoctor = {detailDoctor}
-                                     />
-                                     <DetailExtraInfoDoctor doctorIdByParent={doctor.doctorId}/>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+                            );
+                        })
+                    ) : (
+                        <div className="empty-state">
+                            <p className="empty-message">Hiện không có bác sĩ nào khả dụng. Vui lòng thử lại sau.</p>
+                        </div>
+                    )}
+                </div>
                 <HomeFootage />
             </div>
         );

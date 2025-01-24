@@ -40,7 +40,6 @@ class VerifyBooking extends Component {
 
     render() {
         let {statusVerify, errCode} = this.state
-        console.log(statusVerify)
         return (
             <div>
                 <HomeHeader isshowBanner={false}/>

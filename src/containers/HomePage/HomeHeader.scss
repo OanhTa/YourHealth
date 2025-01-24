@@ -16,14 +16,27 @@
             width: 25%;
             display: flex;
             align-items: center;
-
+            .icon-bars{
+                display: none;
+            }
             .header-logo {
-                background: url(../../assets/logo.svg) center center no-repeat;
                 height: 60%;
                 width: 60%;
                 cursor: pointer;
                 margin-left: 15px;
+                font-size: 2.2rem; 
+                color: #f7d800;
+                letter-spacing: 0.04em;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                i {
+                    font-size: 2.8rem; 
+                    color: #49bce2;
+                    margin-right: 8px; 
+                }
             }
+            
 
             i {
                 font-size: 28px;
@@ -40,7 +53,11 @@
 
             .child-content {
                 cursor: pointer;
-
+                a{
+                    text-decoration: none;
+                    color: inherit;  
+                    transition: color 0.3s, background-color 0.3s;
+                }
                 .subs-title {
                     font-size: 12px;
                     font-weight: 400;
@@ -202,3 +219,44 @@
     }
 
 }
+
+@media (max-width: 1024px) { /* Áp dụng khi kích thước màn hình nhỏ hơn hoặc bằng 768px */
+    .home-header-container {
+    
+        .home-header-content {
+            display: flex;
+            justify-content: space-between;
+            .left-content {
+                .icon-bars{
+                    display: block;
+                }
+                
+                          
+            }
+    
+            .center-content {
+                display: none;
+            }
+    
+            .right-content {
+                
+                }
+            }
+    }
+    .home-header-banner {
+        height: 420px;  
+        .content-up {
+            .title-1, .title-2 { 
+                font-size: 26px;
+            }
+        }
+        .content-down {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+    
+            .options {
+                display: none;
+            }
+        }
+    }
+}
+    

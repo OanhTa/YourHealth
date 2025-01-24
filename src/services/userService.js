@@ -5,12 +5,10 @@ const handleLoginAPI = (userEmail, userPassword) => {
 }
 
 const getAllUser = (inputId) => {
-    console.log("check data input createuser API: ", inputId);
     return axios.get(`/api/get-all-user?id=${inputId}`);
 }
 
 const CreateNewUserServiceAPI = (data) => {
-    // console.log("check data input createuser API: ", data);
     return axios.post("/api/create-new-user", data);
 }
 
@@ -54,6 +52,9 @@ const saveBulkScheduleServie = (data) => {
 const getScheduleByDateServie = (doctorId, date) => {
     return axios.get(`/api/get-all-schedule?doctorId=${doctorId}&date=${date}`);
 }
+const getAllPatientBookingByDoctor = (doctorId, date) => {
+    return axios.get(`/api/get-list-patient-ByDoctor?doctorId=${doctorId}&date=${date}`);
+}
 const getProfileDoctorServie = (id) => {
     return axios.get(`/api/get-profile-doctorById?id=${id}`);
 }
@@ -81,6 +82,9 @@ const getAllClinicServie = () => {
 const getClinicByIdServie = (id) => {
     return axios.get(`/api/get-clinic-id?id=${id}`);
 }
+const sendConfirmBill = (data) => {
+    return axios.post(`/api/sendBill`, data);
+}
 export {
     handleLoginAPI,
     getAllUser, CreateNewUserServiceAPI, DeleteUserServiceAPI, EditUserServiceAPI,
@@ -90,7 +94,8 @@ export {
     saveBulkScheduleServie, getScheduleByDateServie,
     getExtraInfoDoctorServie,
     getProfileDoctorServie,
-    postPatientBookingAppoinment,
+    postPatientBookingAppoinment, sendConfirmBill,
+    getAllPatientBookingByDoctor,
     postVerifyBookingAppoinment,
     createNewSpecialty, getAllSpecialtyServie, getSpecialtyByIdServie,
     createNewClinic, getAllClinicServie, getClinicByIdServie

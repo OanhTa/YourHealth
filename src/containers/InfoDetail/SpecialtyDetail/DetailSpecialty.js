@@ -9,7 +9,6 @@ import ProfileDoctor from '../DoctorDetail/ProfileDoctor';
 import DetailExtraInfoDoctor from '../DoctorDetail/DetailExtraInfoDoctor';
 import { LANGUAGES } from '../../../utils';
 import { values } from 'lodash';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 class DetailSpecialty extends Component {
     constructor(props) {
@@ -106,27 +105,31 @@ class DetailSpecialty extends Component {
                     })
                 }
                 </select>
-                {
-                    arrDoctor.map((doctor, index)=>{
-                        return (
-                            <div className='specialty-item row' key={index}>
-                                <div className='col col-6 col-left'>
-                                    <ProfileDoctor doctorIdByParent = {doctor.doctorId} isShowDes={true}/>
-                                    <p className='showDetail'>
-                                        <Link to={`/doctor-info/${doctor.doctorId}`}>Xem thêm</Link>
-                                    </p>
+                <div>
+                    {arrDoctor && arrDoctor.length > 0 ? (
+                        arrDoctor.map((doctor, index) => {
+                            return (
+                                <div className='specialty-item row' key={index}>
+                                    <div className='col-12 col-md-12 col-lg-6 col-left'>
+                                        <ProfileDoctor doctorIdByParent={doctor.doctorId} isShowDes={true} isShowDetail={true}/>
+                                    </div>
+                                    <div className='col-12 col-md-12 col-lg-6 col-right'>
+                                        <DetailDoctorSchedule
+                                            doctorIdByParent={doctor.doctorId}
+                                            detailDoctor={detailDoctor}
+                                        />
+                                        <DetailExtraInfoDoctor doctorIdByParent={doctor.doctorId} />
+                                    </div>
                                 </div>
-                                <div className='col col-6 col-right'>
-                                    <DetailDoctorSchedule 
-                                        doctorIdByParent={doctor.doctorId} 
-                                        detailDoctor = {detailDoctor}
-                                     />
-                                     <DetailExtraInfoDoctor doctorIdByParent={doctor.doctorId}/>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+                            );
+                        })
+                    ) : (
+                        <div className="empty-state p-4" >
+                            <p className="empty-message">Hiện không có bác sĩ nào khả dụng trong chuyên khoa này. Vui lòng thử lại sau.</p>
+                        </div>
+                    )}
+                </div>
+
                 <HomeFootage />
             </div>
         );

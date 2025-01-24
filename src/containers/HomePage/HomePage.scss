@@ -52,15 +52,20 @@
     &.section-doctor {
         width: 100vw;
         background: #f5f5f5;
+        .outer-bg {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
     }
-    .section-container {
-        margin: 0 100px;
+    .section-container{
+        margin: 28px 100px;
         display: flex;
         flex-direction: column;
 
         .section-header {
             height: 60px;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             padding-top: 20px;
             text-transform: uppercase;
             .title-section {
@@ -108,7 +113,7 @@
                 }
                 .bg-image {
                     height: 200px;
-                    width: 278px;
+                    width: 310px;
                     background-position: center center;
                     background-repeat: no-repeat;
                     background-size: cover;
@@ -131,10 +136,71 @@
 
 }
 
-.section-doctor {
-    .outer-bg {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
+.section-about{
+    margin: 36px 100px;
+    .section-about-content{
+        font-size: 18px;
+        .title-section {
+            font-size: 26px;
+            font-weight: 600;
+            color: #3fadd1;
+            margin-bottom: 12px;
+        }
+    }
+    img { 
+        max-width: 100%; 
+        height: auto; 
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px; 
     }
 }
+@media (max-width: 1024px) {
+    .section-share {
+        padding: 0.5rem 0;
+
+        .section-container {
+            margin: 20px 10px; /* Thu hẹp margin */
+
+            .section-header {
+                margin-bottom: 15px;
+                .title-section {
+                    font-size: 18px; /* Giảm font-size tiêu đề */
+                }
+
+                .btn-section {
+                    padding: 6px 10px; /* Thu gọn nút */
+                    font-size: 12px; /* Thu nhỏ chữ trong nút */
+                }
+            }
+
+            .section-item {
+                .section-customize {
+                    margin-bottom: 10px; /* Giảm khoảng cách giữa các mục */
+
+                    .sub-title {
+                        font-size: 14px; /* Giảm kích thước chữ */
+                    }
+
+                    .bg-image {
+                        height: 140px; /* Thu nhỏ chiều cao ảnh */
+                        width: 220px; /* Thu nhỏ chiều rộng ảnh */
+
+                        &.section-doctor {
+                            height: 80px; /* Thu nhỏ hình ảnh tròn */
+                            width: 80px;
+                        }
+
+                        &.section-special {
+                            border-radius: 4px; /* Giảm bo góc */
+                            border: 1px solid #dfdfdf;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Giảm shadow */
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+    

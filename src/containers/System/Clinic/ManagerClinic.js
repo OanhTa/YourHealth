@@ -65,7 +65,6 @@ class ManagerClinic extends Component {
     }
     render() {
         const mdParser = new MarkdownIt(/* Markdown-it options */);
-        console.log(this.state)
         return (
             <div>
                 <div className='title'>

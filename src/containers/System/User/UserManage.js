@@ -82,7 +82,6 @@ class UserManage extends Component {
     createNewuser =async (data) => {
         try {
             let respone = await CreateNewUserServiceAPI(data);
-            //console.log("check respone create user: ", respone);
             if (respone && respone.errCode !== 0) {
                 alert(respone.errMessage)
             } else {

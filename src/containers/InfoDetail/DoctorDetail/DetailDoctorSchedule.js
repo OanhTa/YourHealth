@@ -157,6 +157,7 @@ class DetailDoctorSchedule extends Component {
                     selectedSchedule={this.state.selectedSchedule}
                     closeModel={this.handleCloseModelSchedule}
                     detailDoctor={this.props.detailDoctor}
+                    doctorIdByParent={this.props.doctorIdByParent}
                 />
             </>
         );

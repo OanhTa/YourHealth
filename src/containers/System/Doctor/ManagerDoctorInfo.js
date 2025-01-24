@@ -138,7 +138,6 @@ class ManagerDoctorInfo extends Component {
         })
         let res = await getInfoDetailDoctorServie(selectedOption.value);
         let {arrPayment, arrPrice, arrProvince, arrSpecialty, arrClinic } = this.state;
-        console.log(res)
         if(res && res.errCode == 0 && res.data && res.data.Markdown && res.data.DoctorInfo){
             let mardown = res.data.Markdown
             let doctorDetail = res.data.DoctorInfo

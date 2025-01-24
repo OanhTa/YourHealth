@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { connect } from 'react-redux';
 import './ProfileDoctor.scss'
 import { getInfoDetailDoctorServie, getProfileDoctorServie } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
+import LikeAndShare from '../LikeAndShare';
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -40,7 +42,7 @@ class ProfileDoctor extends Component {
     }
 
     render() {
-        let {isShowDes, selectedSchedule, selectedDay} = this.props;
+        let {isShowDes, isShowLike, isShowDetail, selectedSchedule, selectedDay} = this.props;
         let {detailDoctor, doctorIdByParent} = this.state;
 
         let nameVI,nameEN
@@ -57,10 +59,11 @@ class ProfileDoctor extends Component {
                             style={{backgroundImage: `url(${detailDoctor.image ? detailDoctor.image:""})`}}>
                         </div>
                     </div>
-                    <div className='col col-10'>
+                    <div className='col col-1'></div>
+                    <div className='col col-9'>
                         <div className='up'>{language === LANGUAGES.VI ? nameVI : nameEN}</div>
                         {isShowDes ?
-                        (<div className='down'>
+                        (<div className='down mb-3'>
                                 {detailDoctor.Markdown && detailDoctor.Markdown.description &&
                                     <span>
                                         {detailDoctor.Markdown.description}
@@ -68,7 +71,7 @@ class ProfileDoctor extends Component {
                                 }
                         </div>)
                         :
-                        (<div className='down'>
+                        (<div className='down mb-3'>
                             {selectedSchedule && selectedSchedule.timeTypeData && selectedDay &&
                                 <div>
                                     <div>
@@ -82,6 +85,16 @@ class ProfileDoctor extends Component {
                                 </div>
                             }
                         </div>) 
+                        }
+                        {isShowLike &&
+                        (<div className='doctor-like'>
+                            <LikeAndShare/>
+                        </div>)
+                        }
+                        {isShowDetail &&
+                        (<div className='showDetail'>
+                            <Link to={`/doctor-info/${doctorIdByParent}`}>Xem thêm</Link>
+                        </div>)
                         }
                       </div>
                     </div>

@@ -81,6 +81,19 @@
         "choose-date": "Chọn ngày",
         "save-schedule": "Lưu thông tin"
     },
+    "manager-booking": {
+        "title": "QUẢN LÝ BỆNH NHÂN ĐẶT LỊCH KHÁM",
+        "choose-day": "Chọn ngày khám",
+        "name": "Họ tên",
+        "email": "Email",
+        "phone": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "time": "Thời gian đặt",
+        "status": "Trạng thái",
+        "action": "Hành động",
+        "confirm": "Xác nhận"
+    },
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
         "speciality": "Chuyên khoa phổ biến",

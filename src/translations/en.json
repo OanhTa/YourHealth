@@ -81,6 +81,19 @@
         "choose-date": "Choose date",
         "save-schedule": "Save information"
     },
+    "manager-booking": {
+        "title": "MANAGE PATIENTS WHO BOOK EXAMINATION SCHEDULES",
+        "choose-day": "Choose Day",
+        "name": "First Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "address": "Address",
+        "gender": "Gender",
+        "time": "Appointment Time",
+        "status": "Status",
+        "action": "Actions",
+        "confirm": "Confirm"
+    },
     "homepage": {
         "speciality": "Popular specialties",
         "clinic": "Medical facilitys",

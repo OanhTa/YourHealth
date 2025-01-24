@@ -25,7 +25,6 @@ class ModalUser extends Component {
     }
 
     componentDidMount() {
-        //console.log("moutting modal");
     }
 
     listenToEmitter() {
@@ -77,8 +76,6 @@ class ModalUser extends Component {
         if(isValid === true){
             //call api create user
             this.props.createNewuser(this.state);
-
-            console.log("data modal:", this.state);
         }
     }
 

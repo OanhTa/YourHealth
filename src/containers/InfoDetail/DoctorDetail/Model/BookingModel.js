@@ -12,6 +12,7 @@ import * as actions from '../../../../store/actions';
 import Select from 'react-select'
 import { postPatientBookingAppoinment } from '../../../../services/userService';
 import { lte } from 'lodash';
+import moment from 'moment';
 
 class BookingModel extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class BookingModel extends Component {
             doctorName: "",
             email: "",
             fullName: "",
-            selectedDate: "",
+            birthDay: "",
+            dateTime: "",
             address: "",
             selectedGender: "",
             phonenumber: "",
@@ -48,17 +50,26 @@ class BookingModel extends Component {
             })
         }
         if (prevProps.selectedSchedule !== this.props.selectedSchedule ||
-            prevProps.detailDoctor !== this.props.detailDoctor) {
+            prevProps.detailDoctor !== this.props.detailDoctor || 
+            prevProps.selectedDay !== this.props.selectedDay) {
             
             let doctorId = this.props.detailDoctor?.id || null;
             let timeType = this.props.selectedSchedule?.timeType || null;
+
+            let selectedDay = this.props.selectedDay
+            let dateTime = moment(selectedDay, "dddd - DD/MM")
+                    .year(new Date().getFullYear()) // Set the current year (or adjust as needed)
+                    .startOf("day") // Ensure it's set to 00:00:00 of the selected day
+                    .valueOf(); // Get the timestamp in milliseconds
+           
             let doctorName = this.props.detailDoctor
                 ? `${this.props.detailDoctor.firstName} ${this.props.detailDoctor.lastName}` : '';
     
             this.setState({
                 doctorId,
                 doctorName,
-                timeType
+                timeType,
+                dateTime
             });
         }
     }
@@ -83,9 +94,9 @@ class BookingModel extends Component {
             ...stateCopy
         })
     }
-    handleOnChangeDate = (selectedDate)=>{
+    handleOnChangeDate = (birthDay)=>{
         this.setState({
-            selectedDate: selectedDate[0]
+            birthDay: birthDay[0]
         })
     }
     handleOnChangeSelect = (selectedOption)=>{
@@ -103,7 +114,7 @@ class BookingModel extends Component {
         }
     }
     render() {
-       let {isOpen, closeModel, detailDoctor, selectedSchedule, selectedDay, language, intl } = this.props;
+       let {isOpen, closeModel, detailDoctor,doctorIdByParent, selectedSchedule, selectedDay, language, intl } = this.props;
        return (
             <Modal isOpen={isOpen} size="lg" centered backdrop>
                 <ModalHeader >
@@ -112,7 +123,7 @@ class BookingModel extends Component {
                 <ModalBody>
                     <div className='doctor-model-container'>
                         <ProfileDoctor 
-                            detailDoctor={detailDoctor}  
+                            doctorIdByParent = {doctorIdByParent}
                             selectedSchedule={selectedSchedule} 
                             selectedDay = {selectedDay}
                             isShowDes={false}
@@ -155,7 +166,7 @@ class BookingModel extends Component {
                                     className="form-control"
                                     placeholder={intl.formatMessage({ id: 'patient-booking-model.date' })} 
                                     onChange={this.handleOnChangeDate}
-                                    selected={this.state.selectedDate}
+                                    selected={this.state.birthDay}
                                 />
                             </div>
                         </div>

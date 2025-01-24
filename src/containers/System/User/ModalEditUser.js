@@ -23,7 +23,6 @@ class ModalEditUser extends Component {
     }
 
     componentDidMount() {
-        //console.log("moutting modal");
         let user = this.props.currentUser; // check object rong hay ko >>> su dung lodash
         if(user && !_.isEmpty(user)){
             this.setState({
@@ -72,7 +71,6 @@ class ModalEditUser extends Component {
         if(isValid === true){
             //call api edit user
             this.props.EditUser(this.state);
-            console.log("data modal edituser:", this.state);
         }
     }
 

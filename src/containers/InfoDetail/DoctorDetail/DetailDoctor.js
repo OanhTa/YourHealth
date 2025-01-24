@@ -8,6 +8,8 @@ import DetailDoctorSchedule from './DetailDoctorSchedule';
 import DetailExtraInfoDoctor from './DetailExtraInfoDoctor';
 import ProfileDoctor from './ProfileDoctor';
 import HomeFootage from '../../HomePage/HomeFootage';
+import Comment from '../Comment';
+import LikeAndShare from '../LikeAndShare';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -43,7 +45,7 @@ class DetailDoctor extends Component {
             <div>
                 <HomeHeader isshowBanner={false}/>
                 <div className='doctor-detail-container'>
-                    <ProfileDoctor doctorIdByParent = {doctorId} isShowDes={true}/>
+                    <ProfileDoctor doctorIdByParent = {doctorId} isShowDes={true} isShowLike={true}/>
                     <div className='doctor-schedule row'>
                         <div className='col col-6 col-left'>
                             <DetailDoctorSchedule 
@@ -61,7 +63,7 @@ class DetailDoctor extends Component {
                         }
                     </div>
                     <div className='comment'>
-
+                        <Comment />
                     </div>
                 </div>
                 <HomeFootage />

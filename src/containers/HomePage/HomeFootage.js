@@ -45,7 +45,7 @@ class HomeFootage extends Component {
                         </div>
                     </div>
                     <div className="text-center mt-3 footer-end">
-                            <p className="footer-text">&copy; 2024 BookingCare. All rights reserved.</p>
+                            <p className="footer-text">&copy; 2024 YourHealth. All rights reserved.</p>
                             <p className="footer-text mb-0">Designed by <span className="brand-name">OanhTa</span></p>
                     </div>
                 </footer>
