@@ -26,9 +26,8 @@ class HomeHeader extends Component {
     }
     toggleMenu = () => {
         this.setState({
-            isOpenMenu: !this.state.isOpenMenu
+            isOpenMenu: ! this.state.isOpenMenu
         })
-        alert('click')
     };
     render() {
         let isOpenMenu = this.state.isOpenMenu
@@ -44,9 +43,11 @@ class HomeHeader extends Component {
                         {/* Menu thả xuống */}
                         {isOpenMenu && (
                             <ul className="dropdown-menu">
-                                <li>Option 1</li>
-                                <li>Option 2</li>
-                                <li>Option 3</li>
+                                <li onClick={this.toggleMenu}><a href="#section-speciality"><FormattedMessage id="home-header.speciality" /></a></li>
+                                <li onClick={this.toggleMenu}><a href="#section-clinic"><FormattedMessage id="home-header.health-facility" /></a></li>
+                                <li onClick={this.toggleMenu}><a href="#section-doctor"><FormattedMessage id="home-header.doctor" /></a></li>
+                                <li onClick={this.toggleMenu}><a href="#section-fee"><FormattedMessage id="home-header.fee" /></a></li>
+                                <li onClick={this.toggleMenu}> <FormattedMessage id="home-header.support"/></li>
                             </ul>
                         )}
                         <div className='header-logo' onClick={this.returntoHome}>
