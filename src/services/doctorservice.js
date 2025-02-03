@@ -138,6 +138,7 @@ let getInfoDoctorService =(id)=>{
             }
             let doctor = await db.User.findOne({
                 where: {id},
+                logging: console.log ,
                 attributes: {
                     exclude: ['password']
                 },
@@ -160,7 +161,7 @@ let getInfoDoctorService =(id)=>{
                             { model: db.Allcode, as: 'priceData', attributes: ['valueEn', 'valueVi']},
                             { model: db.Allcode, as: 'provinceData', attributes: ['valueEn', 'valueVi']},
                             { model: db.Allcode, as: 'paymentData', attributes: ['valueEn', 'valueVi']},
-                            { model: db.Specialty, as: 'specialtyData'},
+                            // { model: db.Specialty, as: 'specialtyData'},
                         ]
                     },             
                 ],

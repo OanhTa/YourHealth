@@ -48,7 +48,7 @@ let getInfoDoctor = async(req, res)=>{
     } catch (error) {
         res.status(200).json({
             errCode: -1,
-            message: "Error From Server"
+            message: "Error From Server" + error
         })
     }
 }
