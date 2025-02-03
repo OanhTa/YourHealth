@@ -28,6 +28,7 @@ class Specialty extends Component {
     }
     render() {
         let {allSpecial } = this.state
+        let sliderKey = allSpecial.length;
         return (
             <div className='section-share section-specialty' id='section-speciality'>
                 <div className='section-container'>
@@ -36,9 +37,9 @@ class Specialty extends Component {
                         <button className='btn-section'><FormattedMessage id="homepage.more"/></button>
                     </div>
                     <div className='section-item'>
-                        <Slider {...this.props.settings}>
+                        <Slider key={sliderKey} {...this.props.settings}>
                             {
-                                allSpecial && allSpecial.length > 0 && allSpecial.map((item, index) => {
+                                allSpecial && allSpecial.length > 0 ? allSpecial.map((item, index) => {
                                     let imageBase64 = ''
                                     if(item.image){
                                         imageBase64 = new Buffer(item.image, 'base64').toString('binary');
@@ -53,6 +54,9 @@ class Specialty extends Component {
                                         </div>
                                     )
                                 })
+                                : (
+                                    <p>Loading...</p>
+                                )
                             }
                         </Slider>
                     </div>

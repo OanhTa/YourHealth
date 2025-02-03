@@ -84,8 +84,8 @@ class DetailClinic extends Component {
                             );
                         })
                     ) : (
-                        <div className="empty-state">
-                            <p className="empty-message">Hiện không có bác sĩ nào khả dụng. Vui lòng thử lại sau.</p>
+                        <div className="empty-state p-4" >
+                            <p className="empty-message">Hiện không có bác sĩ nào khả dụng trong chuyên khoa này. Vui lòng thử lại sau.</p>
                         </div>
                     )}
                 </div>

@@ -11,7 +11,7 @@ class Clinic extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            allSpecial: []
+            allClinic: []
         }
     }
 
@@ -19,7 +19,7 @@ class Clinic extends Component {
         let res = await getAllClinicServie();
         if(res && res.errCode === 0){
             this.setState({
-                allSpecial: res.data
+                allClinic: res.data
             })
         }
     }
@@ -27,7 +27,8 @@ class Clinic extends Component {
         this.props.history.push(`/clinic-info/${item.id}`);
     }
     render() {
-        let {allSpecial } = this.state
+        let {allClinic } = this.state
+        let sliderKey = allClinic.length;
         return (
             <div className='section-share section-clinic' id='section-clinic'>
                 <div className='section-container'>
@@ -36,9 +37,9 @@ class Clinic extends Component {
                         <button className='btn-section'><FormattedMessage id="homepage.more"/></button>
                     </div>
                     <div className='section-item'>
-                        <Slider {...this.props.settings}>
+                        <Slider key={sliderKey} {...this.props.settings}>
                             {
-                                allSpecial && allSpecial.length > 0 && allSpecial.map((item, index) => {
+                                allClinic && allClinic.length > 0 ? allClinic.map((item, index) => {
                                     let imageBase64 = ''
                                     if(item.image){
                                         imageBase64 = new Buffer(item.image, 'base64').toString('binary');
@@ -57,6 +58,9 @@ class Clinic extends Component {
                                         </div>
                                     )
                                 })
+                                : (
+                                    <p>Loading...</p>
+                                )
                             }
                         </Slider>
                     </div>

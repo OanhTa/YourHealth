@@ -27,7 +27,7 @@ class ProfileDoctor extends Component {
         }
     fetchProfile = async()=>{
         let res = await getInfoDetailDoctorServie(this.props.doctorIdByParent);
-
+        console.log(res)
         if (res && res.errCode === 0) {
             this.setState({
                 doctorIdByParent: this.props.doctorIdByParent, // cập nhật state
@@ -51,6 +51,7 @@ class ProfileDoctor extends Component {
             nameEN = `${detailDoctor.positionData.valueEn}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
         }
         let language = this.props.language;
+        console.log(detailDoctor)
         return (
             <div className='doctor-profile-container'>
                 <div className='profile-info row'>

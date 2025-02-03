@@ -37,7 +37,7 @@ class Doctor extends Component {
     render() {
         let arrDoctors = this.state.arrDoctors;
         let language = this.props.language;
-
+        let sliderKey = arrDoctors.length;
         return (
             <div className='section-share section-doctor' id='section-doctor'>
                 <div className='section-container'>
@@ -46,9 +46,9 @@ class Doctor extends Component {
                         <button className='btn-section'><FormattedMessage id="homepage.more"/></button>
                     </div>
                     <div className='section-item'>
-                        <Slider {...this.props.settings}>
+                        <Slider key={sliderKey} {...this.props.settings}>
                             {
-                                arrDoctors && arrDoctors.length > 0 && arrDoctors.map((item, index) => {
+                                arrDoctors && arrDoctors.length > 0 ? arrDoctors.map((item, index) => {
                                     let imageBase64 = ''
                                     if(item.image){
                                         imageBase64 = new Buffer(item.image, 'base64').toString('binary');
@@ -70,6 +70,9 @@ class Doctor extends Component {
                                         </div> 
                                     )
                                 })
+                                : (
+                                    <p>Loading...</p>
+                                )
                             }           
                         </Slider>
                     </div>

@@ -25,19 +25,14 @@ class HomePage extends Component {
             slidesToShow: 4,
             slidesToScroll: 1,
             responsive: [
-                {
-                    breakpoint: 1024, // Kích thước nhỏ hơn hoặc bằng 1024px
-                    settings: {
-                        slidesToShow: 3, // Hiển thị 3 slide
-                        slidesToScroll: 1,
-                    },
-                }
+                { breakpoint: 1200, settings: { slidesToShow: 3, slidesToScroll: 1 } },
+                { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 1, dots: true, arrows: false } },
             ],
         };
         
         return (
             <div>
-                 <HomeHeader isshowBanner={true} />
+                <HomeHeader isshowBanner={true} />
                 <Specialty  settings={settings} />
                 <Clinic  settings={settings} />
                 <Doctor settings={settings} />

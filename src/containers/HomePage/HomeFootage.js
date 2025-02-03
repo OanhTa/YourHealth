@@ -36,11 +36,6 @@ class HomeFootage extends Component {
                             <div className="col-4 download-app">
                                 <h5>Tải ứng dụng BookingCare</h5>
                                 <p>Cho điện thoại hoặc máy tính bảng:</p>
-                                <ul className="app-links">
-                                    <li><a href="#">Android</a></li>
-                                    <li><a href="#">iPhone/iPad</a></li>
-                                    <li><a href="#">Khác</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>

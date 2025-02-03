@@ -113,7 +113,7 @@
                 }
                 .bg-image {
                     height: 200px;
-                    width: 310px;
+                    width: 286px;
                     background-position: center center;
                     background-repeat: no-repeat;
                     background-size: cover;
@@ -137,15 +137,8 @@
 }
 
 .section-about{
-    margin: 36px 100px;
     .section-about-content{
-        font-size: 18px;
-        .title-section {
-            font-size: 26px;
-            font-weight: 600;
-            color: #3fadd1;
-            margin-bottom: 12px;
-        }
+        font-size: 18px;    
     }
     img { 
         max-width: 100%; 
@@ -155,46 +148,213 @@
         margin-top: 20px; 
     }
 }
-@media (max-width: 1024px) {
+
+@media (max-width: 1200px) {
     .section-share {
-        padding: 0.5rem 0;
+        padding: 1rem 2rem; 
 
         .section-container {
-            margin: 20px 10px; /* Thu hẹp margin */
+            margin: 20px 2rem;
 
             .section-header {
-                margin-bottom: 15px;
+                margin-bottom: 20px;
                 .title-section {
-                    font-size: 18px; /* Giảm font-size tiêu đề */
+                    font-size: 20px;
                 }
 
                 .btn-section {
-                    padding: 6px 10px; /* Thu gọn nút */
-                    font-size: 12px; /* Thu nhỏ chữ trong nút */
+                    padding: 8px 12px; /* Nút lớn hơn một chút */
+                    font-size: 14px; /* Chữ trong nút vừa phải */
                 }
             }
 
             .section-item {
                 .section-customize {
-                    margin-bottom: 10px; /* Giảm khoảng cách giữa các mục */
+                    margin-bottom: 20px; /* Khoảng cách giữa các mục được giữ rộng */
 
                     .sub-title {
-                        font-size: 14px; /* Giảm kích thước chữ */
+                        font-size: 16px; /* Giữ kích thước chữ đủ lớn */
                     }
 
                     .bg-image {
-                        height: 140px; /* Thu nhỏ chiều cao ảnh */
-                        width: 220px; /* Thu nhỏ chiều rộng ảnh */
+                        height: 200px; /* Kích thước ảnh vừa phải */
+                        width: 280px;
 
                         &.section-doctor {
-                            height: 80px; /* Thu nhỏ hình ảnh tròn */
+                            height: 120px; /* Hình ảnh bác sĩ tròn lớn */
+                            width: 120px;
+                        }
+
+                        &.section-special {
+                            border-radius: 6px; /* Bo góc vừa phải */
+                            border: 1px solid #dfdfdf;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm shadow rõ hơn */
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+/* Màn hình trung bình (tablet ngang/laptop nhỏ > 992px) */
+@media (max-width: 992px) {
+    .section-share {
+        padding: 0.5rem 1.5rem; /* Giảm padding một chút cho các màn hình vừa */
+
+        .section-container {
+            margin: 15px 1.5rem;
+
+            .section-header {
+                margin-bottom: 18px;
+                .title-section {
+                    font-size: 18px; /* Giảm kích thước tiêu đề */
+                }
+
+                .btn-section {
+                    padding: 6px 10px;
+                    font-size: 13px;
+                }
+            }
+
+            .section-item {
+                .section-customize {
+                    margin-bottom: 15px; /* Giảm khoảng cách giữa các mục */
+
+                    .sub-title {
+                        font-size: 15px; /* Chữ tiêu đề mục nhỏ lại một chút */
+                    }
+
+                    .bg-image {
+                        height: 180px; /* Giảm chiều cao ảnh */
+                        width: 260px;
+
+                        &.section-doctor {
+                            height: 100px; /* Hình ảnh bác sĩ tròn vừa */
+                            width: 100px;
+                        }
+
+                        &.section-special {
+                            border-radius: 4px;
+                            border: 1px solid #e0e0e0;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Nhẹ hơn */
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .slick-prev,
+    .slick-next {
+        height: 40px !important; /* Giảm chiều cao */
+        width: 36px !important;  /* Giảm chiều rộng */
+    }
+
+    .slick-prev {
+        left: -8px !important; /* Điều chỉnh vị trí nút */
+    }
+
+    .slick-next {
+        right: -8px !important;
+    }
+}
+
+/* Màn hình nhỏ (tablet dọc > 768px) */
+@media (max-width: 768px) {
+    .section-share {
+        padding: 0.5rem 1rem;
+
+        .section-container {
+            margin: 15px 1rem;
+
+            .section-header {
+                margin-bottom: 12px;
+                .title-section {
+                    font-size: 16px; /* Tiêu đề nhỏ hơn */
+                }
+
+                .btn-section {
+                    padding: 6px 8px;
+                    font-size: 12px; /* Chữ nhỏ hơn */
+                }
+            }
+
+            .section-item {
+                .section-customize {
+                    margin-bottom: 12px;
+                    text-align: center; 
+                    .sub-title {
+                        font-size: 14px; /* Giảm chữ tiêu đề mục */
+                    }
+
+                    .bg-image {
+                        height: 160px; /* Ảnh nhỏ hơn */
+                        width: 240px;
+
+                        &.section-doctor {
+                            height: 80px; /* Hình bác sĩ nhỏ lại */
                             width: 80px;
                         }
 
                         &.section-special {
-                            border-radius: 4px; /* Giảm bo góc */
-                            border: 1px solid #dfdfdf;
-                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Giảm shadow */
+                            border-radius: 3px;
+                            border: 1px solid #ddd;
+                            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .section-about{
+        .section-about-content{
+            font-size: 16px;    
+        }
+    }
+}
+
+/* Màn hình rất nhỏ (mobile > 480px) */
+@media (max-width: 480px) {
+    .section-share {
+        padding: 0.5rem;
+
+        .section-container {
+            margin: 10px;
+
+            .section-header {
+                margin-bottom: 10px;
+                .title-section {
+                    font-size: 14px; /* Tiêu đề nhỏ gọn hơn */
+                }
+
+                .btn-section {
+                    padding: 5px 8px;
+                    font-size: 11px; /* Chữ nhỏ cho nút */
+                }
+            }
+
+            .section-item {
+                .section-customize {
+                    margin-bottom: 8px;
+
+                    .sub-title {
+                        font-size: 12px; /* Chữ tiêu đề mục rất nhỏ */
+                    }
+
+                    .bg-image {
+                        height: 120px; /* Ảnh rất nhỏ */
+                        width: 200px;
+
+                        &.section-doctor {
+                            height: 60px; /* Hình ảnh bác sĩ tròn rất nhỏ */
+                            width: 60px;
+                        }
+
+                        &.section-special {
+                            border-radius: 3px;
+                            border: 1px solid #ccc;
+                            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* Shadow nhẹ */
                         }
                     }
                 }
@@ -202,5 +362,6 @@
         }
     }
 }
+
 
     

@@ -186,14 +186,12 @@
         }
 
         .search {
-            // width: fit-content;
             display: flex;
             justify-content: center;
             width: fit-content;
             margin: 15px auto;
             align-items: center;
             padding: 10px;
-            // width: 450px;
             border-radius: 30px;
             background: #f7d800;
 
@@ -299,4 +297,35 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .home-header-container {
+        .home-header-content {
+            .left-content, .right-content {
+                width: 20%; /* Điều chỉnh lại phần trái và phải */
+            }
+
+            .center-content {
+                width: 60%; /* Căn giữa phần trung tâm */
+            }
+        }
+    }
+
+    .home-header-banner {
+        height: 380px;
+        .content-up {
+            .title-1, .title-2 {
+                font-size: 20px;
+            };
+            .search{
+                width: 80%;
+            }
+        }
+
+        .content-down {
+            padding: 0 100px; /* Giảm padding */
+        }
+    }
+}
+
     
